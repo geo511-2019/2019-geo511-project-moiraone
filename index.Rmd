@@ -1,11 +1,19 @@
 ---
-title: "I have the best titles"
-author: Your name here
+title: "Human Capital Formation and Redistribution as a function of Spatial Skills Mismatch "
+author: Moira O'Neill
 subtitle: Subtitle here if desired
 ---
 
 # Introduction
-My really awesome and complete introduction will go here.  
+
+In the United States, public colleges and universities play a critical role in attracting, concentrating, and redistributing human capital. 
+
+Students often relocate from a dispersed set of hometowns to a few select localities to attend university. After graduating, many students will relocate to take up new jobs elsewhere. But some students who move to a new area for college will also stay in that community after they complete their degree (Winters 2011). This can have a compounding effect on local human capital stocks, and lead to productivity and wage gains for the entire workforce (Moretti 2004).
+
+In rural and post-industrial communities with institutions of higher education but relatively low levels of human capital, graduate retention rates are likely to have a significant impact on a region’s overall competitiveness (Whisler et al. 2008). However, owing to the difficulty of measuring these effects and lack of available data, graduate retention has not been well-studied and remains poorly understood.
+
+This study will begin to address this gap by comparing the majors of local college graduates to regional employment needs.  In doing so, I expect to consider college graduate’s decisions to stay or leave as a function of the following two-way effect:  first, between the kinds of human capital regional institutions are supplying, and second, the ability of a regional labor market to absorb and integrate supplied labor.
+
 
 # Materials and methods
 
@@ -86,3 +94,9 @@ data %>%
 What have you learned?  Are there any broader implications?
 
 # References
+
+Moretti, E. (2004). Estimating the social return to higher education: Evidence from longitudinal and repeated cross-section data. Journal of Econometrics 121 (1-2): 175-212.
+
+Whisler, R.L. and B.S. Waldorf, G.F. Mulligan, D.A. Plane (2008). Quality of Life and the migration of the college educated: A life-course approach. Growth and Change 39 (1): 58-94.
+
+Winters, John V. (2011). Why are smart cities growing? Who leaves and who stays. Journal of Regional Science 51 (2): 253-270.
