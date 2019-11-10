@@ -1,97 +1,307 @@
 ---
-title: "Human Capital Formation and Redistribution as a function of Spatial Skills Mismatch "
-author: Moira O'Neill
-subtitle: Subtitle here if desired
+title: 'A regionalized SUNY Impact Assessment'
+author: "Moira O'Neill"
+date: "11/7/2019"
+output: html_document
 ---
 
-# Introduction
-
-In the United States, public colleges and universities play a critical role in attracting, concentrating, and redistributing human capital. 
-
-Students often relocate from a dispersed set of hometowns to a few select localities to attend university. After graduating, many students will relocate to take up new jobs elsewhere. But some students who move to a new area for college will also stay in that community after they complete their degree (Winters 2011). This can have a compounding effect on local human capital stocks, and lead to productivity and wage gains for the entire workforce (Moretti 2004).
-
-In rural and post-industrial communities with institutions of higher education but relatively low levels of human capital, graduate retention rates are likely to have a significant impact on a region’s overall competitiveness (Whisler et al. 2008). However, owing to the difficulty of measuring these effects and lack of available data, graduate retention has not been well-studied and remains poorly understood.
-
-By comparing the majors of local college graduates to regional employment needs, this study will begin to address this gap by looking at college graduate’s decisions to stay or leave as a function of the following two-way effect:  first, between the kinds of human capital regional institutions are supplying, and second, the ability of a regional labor market to absorb and integrate supplied labor.
-
-
-# Materials and methods
-
-Narrative and most code will go here.  Describe what you are doing and show how to do it (with code).
-
-You can do bullets like this:
-
-* The first most important thing
-* The second most important thing
-* The third most important thing
-
-You can do numbers like this:
-
-1. The first most important thing
-2. The second most important thing
-3. The third most important thing
-
-See [http://rmarkdown.rstudio.com/](http://rmarkdown.rstudio.com/) for all the amazing things you can do.
-
-
-Here's my first code chunk.
-```{r}
-1+2
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
 ```
 
-Load any required packages in a code chunk (you may need to install some packages):
+## Introduction
 
-```{r, message=F, warning=F}
+The State University of New York (SUNY) is one of the largest public higher education systems in the country, with 64 total institutions spread across 10 state regions.  These regions are highly varied, and include a megacity, the rural periphery, and several old industrial cities experiencing population loss.  The institutions are varied too, and include research universities, comprehensive colleges, community colleges, and technical institutes.
+
+SUNY's heterogenous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu).
+
+How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary regionalized assessment of how effectively the system promotes geographic access, contributes to an educated workforce, and matches human capital to area labor market demand.  A conclusion section highlights the strengths of the system as well as several opportunities for improvement.
+
+
+```{r map, echo = TRUE}
+
+# population map, outline regions, institutional locations
+
+```
+
+## Where do SUNY students come from?
+
+The majority of SUNY students attend college within their own region.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.  
+
+Mohawk Valley, home to the well-regarded comprehensive college SUNY Geneseo, draws a large number of non-regional in-state students.
+
+```{r packages, echo = TRUE}
+
+library(readr)
+library(ggplot2)
+library(dplyr)
 library(tidyverse)
-library(leaflet)
+library(RColorBrewer)
+library(egg)
+library(gridExtra)
+library(readr)
+library(knitr)
 library(kableExtra)
-knitr::opts_chunk$set(cache=TRUE)  # cache the results for quick compiling
+library(latex2exp)
+library(directlabels)
+library(lattice)
+
 ```
 
-## Download and clean all required data
-```{r}
-n=20
-data=data.frame(x=runif(n,-180,180),
-                y=runif(n,-60,60),
-                size = runif(n, 5, 20),
-                category = factor(
-                  sample(letters[1:5], n, replace = TRUE)
-                  ),
-                value = rnorm(n))
+```{r student origins, echo = TRUE}
+
+origins <- read_csv("suny_student_origins.csv")
+
+ggplot(origins, aes(x = Region, y = Value, 
+               fill = Key))+
+  geom_col(position = position_stack(reverse = FALSE))+
+  scale_fill_brewer(palette = "Paired")+
+  theme(axis.text.x = element_text(angle = 90, 
+                                   hjust = 1),
+        axis.text = element_text(size = 7),
+        legend.text = element_text(size = 7),
+        legend.title = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 7),
+        axis.ticks = element_blank(),
+        plot.caption = element_text(size = 6)
+          )+
+  labs(title = "SUNY Student Origins by Region",
+       y = "Percent of Total Students",
+       caption = "Data: Rockefeller Impact Report"
+       )
+
 ```
 
-```{r, results='asis'}
-data %>% 
-  slice(1:10) %>% #show only 1:n rows
-  kable(digits=2,align="c")%>% #make table and round to two digits
-  kable_styling(bootstrap_options = 
-                  c("striped", "hover", "condensed", "responsive")) #apply other formatting
+## Where do SUNY students end up?
+
+The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a dispropotionate part of total graduates in rural parts of the state like Mohawk Valley and North Country.  Despite making up a smaller share of total graduates in the Capital District, SUNY graduates are about 35% of the total workforce there (which is highly educated on the whole).  
+
+SUNY graduates in New York City were mostly educated outside of the region.  The opposite is true of Western New York; of the more than 60% of area graduates that are SUNY alums, about 55% were educated at regional schools.  
+
+```{r suny alums grads, echo = TRUE}
+
+grad_retention <- read_csv("grad_retention_percent_ttl_grads.csv")
+
+view(grad_retention)
+
+ggplot(grad_retention, aes(x = Region, y = Value,
+                           fill = Key))+
+  geom_col(position = position_stack(reverse = FALSE))+
+  scale_fill_brewer(palette = "Paired")+
+  theme(axis.text.x = element_text(angle = 90, 
+                                   hjust = 1),
+        axis.text = element_text(size = 7),
+        legend.text = element_text(size = 7),
+        legend.title = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 7),
+        axis.ticks = element_blank(),
+        plot.caption = element_text(size = 6),
+        legend.key.size = unit(0.4, "cm")
+  )+
+  labs(title = "SUNY Alums as a Percent of Regional Graduates",
+       y = "Percent of Total Graduates",
+       caption = "Data: Rockefeller Impact Report")
+
 ```
 
-Add any additional processing steps here.
+``` {r suny alums workforce, echo = TRUE}
 
-# Results
+grad_retention <- read_csv("grad_retention_percent_ttl_workforce.csv")
 
-Show tables, plots, etc. and describe them.
+view(grad_retention)
 
-```{r, fig.width=6, fig.height=3, fig.cap="Map of completely random data"}
-m <- leaflet(data) %>% 
-  addTiles() %>% 
-  addCircleMarkers(~x, ~y, radius = ~size,color = ~as.factor(category)) %>% 
-  addPopups(~x[2], ~y[2], "Random popup")
-m  # a map with the default OSM tile layer
+ggplot(grad_retention, aes(x = Region, y = Value,
+                           fill = Key))+
+  geom_col(position = position_stack(reverse = FALSE))+
+  scale_fill_brewer(palette = "Paired")+
+  theme(axis.text.x = element_text(angle = 90, 
+                                   hjust = 1),
+        axis.text = element_text(size = 7),
+        legend.text = element_text(size = 7),
+        legend.title = element_blank(),
+        axis.title.x = element_blank(),
+        axis.title.y = element_text(size = 7),
+        axis.ticks = element_blank(),
+        plot.caption = element_text(size = 6),
+        legend.key.size = unit(0.4, "cm")
+  )+
+  labs(title = "SUNY Alums as a Percent of Regional Workforce",
+       y = "Percent of Total Workforce",
+       caption = "Data: Rockefeller Impact Report")
+
+
+```
+
+The level of educational attainment matters, too.  Graduates of technical, community, and comprehensive colleges are all more likely than research university graduates to remain in New York state 10 years after graduation.  
+
+Of course, there is likely significant self-selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet these students' needs.  Higher wage premiums (versus national median wages) at all levels of education reinforce the benefits of access.
+
+``` {r institutional level and wages, retention, echo = TRUE}
+
+wage_retention <- read_csv("institution_retention_wages.csv")
+
+kable(wage_retention, "latex", booktabs = T)
+
+
 ```
 
 
-```{r}
-data %>% 
-  ggplot(aes(x=x,y=y,col=category))+
-  geom_point()
+## How well do skills of local SUNY graduates match regional labor market needs?
+
+An important dimension of any public university's impact is whether the skills of their graduates match labor market demand.  By comparing the types degrees held by alums as a percent of total regional jobs requiring a related degree (this data comes from the NY Department of Labor via the Rockefeller Center) to SUNY alums as a percent of total regional graduates (the dashed reference line), the series of bar plots below depict this skills (mis)match.
+
+Overall, there is an impressive consistency between SUNY graduates' skills and regional labor markets.  But there are some notable mismatches.  In all cases, there is an oversupply of agricultural and art degrees.  The largest and most consistent undersupply is in hospitality.  Mohawk Valley, Long Island, and Western New York demonstrate the least perfect relationship between skills supplied and skills demanded. 
+Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically.
+
+```{r skillsmatch, echo = TRUE}
+
+#load Skills Match Data from CSV file
+skills <- read_csv("suny_skills_match_by_region.csv")
+
+ggplot(skills) + 
+  geom_col(aes(x = Field , y = Degrees, fill = Field), 
+           position = "dodge")+
+  scale_fill_brewer(palette = "Paired")+
+  labs(x = "Field", 
+       y = "SUNY Degrees as a % of Jobs Requiring One",
+       caption = "--- SUNY graduates as a proportion of total regional graduates")+
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+        )+
+  geom_hline(aes(yintercept = Percent), 
+             col = "Black", linetype = "dashed")+
+  facet_wrap(~Region)+
+  theme(legend.position = "bottom", 
+        legend.box = "horizontal", 
+        legend.text = element_text(size = 8),
+        legend.key.size = unit(0.4, "cm"),
+        legend.title = element_blank(),
+        plot.caption = element_text(size = 7),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)
+        )+
+  ggtitle("Matching SUNY Graduates' Skills to Area Labor Markets")
+
 ```
 
-# Conclusions
+## Regional Education Attainment and Income
 
-What have you learned?  Are there any broader implications?
+There is abundant evidence that the social returns to education exceed the private returns, as higher educational attainment rates lead to productivity and wage gains for the entire workforce (Moretti 2004, 2012).  
+
+Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.
+
+[MORE HERE]
+
+``` {r NY educational attainment, echo = TRUE}
+
+regional_ed <- read_csv("suny_regional_education_tidy.csv")
+
+#isolate NY and USA
+
+NY <- regional_ed %>%
+  filter(Region == "NY State")
+
+USA <- regional_ed %>%
+  filter(Region == "USA")
+
+regional_ed1 <- regional_ed %>%
+  filter(Region != "NY State") %>%
+  filter(Region != "USA")
+
+#plot education rates in each region
+
+plot <- ggplot(data = regional_ed1, 
+       aes(x = Year, 
+           y = bach_or_higher, 
+           col = Region))+ geom_line()+
+  scale_color_brewer(palette = "Paired")
+
+plot + geom_line(data = NY, 
+                 aes(x = Year, y = bach_or_higher), 
+                 col = "Black", size = 1)+
+  geom_line(data = USA, 
+            aes(x = Year, y = bach_or_higher), 
+            col = "Black", linetype = "dashed", size = 1)+
+  theme(panel.grid.major = element_blank())+
+  labs(x = "Year", 
+       y = "% Population with Bachelor's or Higher", 
+       title = "Educational Attainment in New York State",
+       caption = "Data compiled from US Census 5-year ACS Estimates"
+         )
+
+```
+
+
+``` {r income, echo = TRUE}
+
+#load income data from .csv file
+regional_income <- read_csv("suny_regional_income_data_tidy.csv")
+
+#View data
+View(regional_income)
+colnames(regional_income)
+
+#isolate NY and USA
+
+NY <- regional_income %>%
+  filter(Region == "NY State")
+
+USA <- regional_income%>%
+  filter(Region == "USA")
+
+regional_income1 <- regional_income %>%
+  filter(Region != "NY State") %>%
+  filter(Region != "USA")
+
+#build line graphs by year, with NY and USA as reference lines
+
+base_plot <- ggplot(data = regional_income1, 
+       aes(x = Year, y = Income, col = Region))+
+  geom_line()
+
+#add NY State and USA as reference lines
+
+base_plot +
+  geom_line(data = NY, 
+            aes(x = Year, y = Income), 
+            col= "Black", size = 1)+
+  scale_color_brewer(palette = "Paired")+
+  geom_line(data = USA, 
+            aes(x = Year, y = Income), 
+            col = "Black", linetype="dashed", size = 1)+
+  theme(panel.grid.major = element_blank())+
+  labs(x = "Year", 
+       y = "Median Income", 
+       title = "Median Incomes in New York State",
+       caption = "Data compiled from U.S. 5-year ACS Estimates"
+         )
+
+```
+
+## Conclusion
+
+The SUNY system's ability to attract, shape, and retain human capital varies between regions.  
+
+The system facilitates resident access through the strategic placement of the institutions themselves, and by offering a range of programs of study at various levels of depth.
+
+[MORE HERE]
+
+
+<!-- give the footer some space -->
+<br/>
+<br/>
+
+<footer id="site-footer">
+  <div id="footer1">
+  This website is a project for Adam Wilson's <a href="https://wilsonlab.io/GEO511"><i> Spatial Data Science (GEO511) </i></a>Course at the University at Buffalo
+  </div>
+  <div id="footer2">
+  <a rel="license" property="http://creativecommons.org/ns#license"
+  href="http://creativecommons.org/licenses/by/4.0/" ><img src="img/cc-by.svg" alt="cc-by"/></a> 
+  </div>
+</footer>
 
 # References
 
