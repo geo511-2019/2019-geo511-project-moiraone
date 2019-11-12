@@ -1,0 +1,241 @@
+---
+title: "The Role of Public Higher Education Systems on Human Capital Formation"
+author: "Moira O'Neill"
+date: "11/5/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+Colleges and universities often play significant roles in local and regional economies, though the extent of their impact is difficult to measure.  Many hundreds of studies have attempted to quantify the effects of knowledge spillovers using proxy variables like patents and institutional employment rates. But fewer studies have considered institutional impact in relation to how efficiently colleges and universities attract, form, and retain human capital.  This is likely due to a lack of public data and the difficulty of estimating the effects themselves.  Still, as we advance further into the "Human Capital Century" (Moretti 2012), and educational attainment rates are increasingly linked to geographies of poverty or prosperity, understanding the role of public university systems in human capital formation is more important than ever.
+
+This study will attempt to advance our understanding of this process using the following case and research questions:
+
+## Case
+
+The State University of New York (SUNY) is one of the largest public higher education systems in the country, with 64 total institutions spread across 10 state regions.  These regions are highly varied, and include a megacity, the rural periphery, and several old industrial cities experiencing population loss.  The institutions themselves are varied too, and include research universities, comprehensive colleges, community colleges, and technical institutes.  
+
+Because of this heterogeneity, the SUNY system provides an exemplary case study to demonstrate the various roles colleges and universities play depending on each region's economic needs.  The SUNY case can also provide insight into the different kinds of environments that are more or less likely to attract and retain certain kinds of human capital.
+
+```{r map, echo=TRUE}
+
+library(tidyverse)
+library(spData)
+library(sf)
+library(tidycensus)
+
+## New Packages
+library(mapview) # new package that makes easy leaflet maps
+
+#load states boundaries
+data("us_states")
+
+new_york <- us_states %>%
+  filter(NAME == "New York") %>%
+  st_transform("+proj=aea +lat_1=29.5 +lat_2=45.5 +
+                               lat_0=37.5 +lon_0=-96 +x_0=0 +y_0=0 +ellps=GRS80 +
+                               datum=NAD83 +units=m +no_defs")
+
+
+
+
+
+
+```
+
+## Research Questions
+
+Using the SUNY system as a case, this study will attempt to answer the following two sets of research questions:
+
+1) Where do SUNY students come from?  Where do SUNY graduates end up? What regional and/or institutional factors explain these patterns? 
+
+2) How well do the skills of SUNY graduates match local labor market needs?  
+
+## Regional Income and Educational Attainment
+
+On an individual level, income levels and educational attainment are closely linked. Yet the social returns to education exceed the private returns, as increasing the number of educated workers leads to productivity and wage gains for the entire workforce (Moretti 2004).
+
+```{r income, echo = TRUE, results='asis'}
+
+#load necessary packages
+library(readr)
+library(tidyverse)
+library(dplyr)
+
+#load income data from .csv file
+regional_income <- read_csv("suny_regional_income_data_tidy.csv")
+
+#View data
+View(regional_income)
+colnames(regional_income)
+
+#isolate NY and USA
+
+NY <- regional_income %>%
+  filter(Region == "NY State")
+
+USA <- regional_income%>%
+  filter(Region == "USA")
+
+regional_income1 <- regional_income %>%
+  filter(Region != "NY State") %>%
+  filter(Region != "USA")
+
+#load additional packages
+
+library(RColorBrewer)
+library(ggplot2)
+library(directlabels)
+library(lattice)
+
+#build line graphs by year, with NY and USA as reference lines
+
+base_plot <- ggplot(data = regional_income1, 
+       aes(x = Year, y = Income, col = Region))+
+  geom_line()
+
+#add NY State and USA as reference lines
+
+base_plot +
+  geom_line(data = NY, 
+            aes(x = Year, y = Income), 
+            col= "Black", size = 1)+
+  scale_fill_brewer(palette = "Paired")+
+  geom_line(data = USA, 
+            aes(x = Year, y = Income), 
+            col = "Black", linetype="dashed", size = 1)+
+  theme(panel.grid.major = element_blank())+
+  labs(x = "Year", 
+       y = "Median Income", 
+       title = "Median Incomes in New York State",
+       caption = "Data compiled from U.S. 5-year ACS Estimates"
+         )
+
+```
+
+
+```{r student origins, echo = TRUE, results 'asis'}
+library(readr)
+library(dplyr)
+library(ggplot2)
+
+regional_ed <- read_csv("suny_regional_education_tidy.csv")
+
+#isolate NY and USA
+
+NY <- regional_ed %>%
+  filter(Region == "NY State")
+
+USA <- regional_ed %>%
+  filter(Region == "USA")
+
+regional_ed1 <- regional_ed %>%
+  filter(Region != "NY State") %>%
+  filter(Region != "USA")
+
+#plot education rates in each region
+
+plot <- ggplot(data = regional_ed1, 
+       aes(x = Year, 
+           y = bach_or_higher, 
+           col = Region))+ geom_line()
+
+plot + geom_line(data = NY, 
+                 aes(x = Year, y = bach_or_higher), 
+                 col = "Black", size = 1)+
+  geom_line(data = USA, 
+            aes(x = Year, y = bach_or_higher), 
+            col = "Black", linetype = "dashed", size = 1)+
+  theme(panel.grid.major = element_blank())+
+  labs(x = "Year", 
+       y = "% Population with Bachelor's or Higher", 
+       title = "Educational Attainment in New York State",
+       caption = "Data compiled from US Census 5-year ACS Estimates"
+         )
+
+```
+
+## Who SUNY serves
+
+```{r student origins, echo = TRUE, results 'asis'}
+
+library(readr)
+
+grad_retention <- read_csv("suny_graduate_retention.csv")
+
+View(grad_retention)
+
+library(knitr)
+
+kable(grad_retention[1:10, 1:5], caption = 
+        "Source: Rockefeller (2011)")
+```
+
+## Graduate Retention Rates
+
+```{r graduate retention, echo = TRUE, results='asis'}
+
+library(readr)
+
+grad_retention <- read_csv("suny_graduate_retention.csv")
+
+View(grad_retention)
+
+library(knitr)
+
+kable(grad_retention[1:10, 1:5], caption = 
+        "Source: Rockefeller (2011)")
+
+kable(grad_retention[1:10, c(1, 8, 9, 11, 12, 13, 15, 16, 17)])
+
+```
+
+## How well do SUNY students' skills match regional labor markets?
+
+```{r skills match, echo = TRUE, results='asis'}
+
+library(readr)
+
+#load Skills Match Data from CSV file
+skills <- read_csv("suny_skills_match_by_region.csv")
+
+View(skills)
+
+library(ggplot2)
+library(dplyr)
+library(RColorBrewer)
+library(egg)
+library(gridExtra)
+
+ggplot(skills) + 
+  geom_col(aes(x = Field , y = Degrees, fill = Field), 
+           position = "dodge")+
+  scale_fill_brewer(palette = "Paired")+
+  labs(x = "Field", 
+       y = "SUNY Degrees as a % of Jobs Requiring One",
+       caption = "--- SUNY graduates as a proportion of total regional graduates")+
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank()
+        )+
+  geom_hline(aes(yintercept = Percent), 
+             col = "Black", linetype = "dashed")+
+  facet_wrap(~Region)+
+  theme(legend.position = "bottom", 
+        legend.box = "horizontal", 
+        legend.text = element_text(size = 7),
+        legend.key.size = unit(0.2, "cm"),
+        legend.title = element_blank(),
+        plot.caption = element_text(size = 7),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)
+        )+
+  ggtitle("Matching SUNY Graduates' Skills to Area Labor Markets")
+
+
+```
+
+
