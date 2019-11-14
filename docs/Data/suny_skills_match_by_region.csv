@@ -1,0 +1,121 @@
+﻿Region,Field,Degrees,Alums,Percent,Skillsmatch
+Capital,Agriculture,100,3300,36,64
+Capital,Art,100,5000,36,64
+Capital,Technical trades,90,9400,36,54
+Capital,Communications and Media,85,3100,36,49
+Capital,Law and Public Service,80,11500,36,44
+Capital,"Science, Engineering",80,13000,36,44
+Capital,Social Services,82,9200,36,46
+Capital,Hospitality,78,9200,36,42
+Capital,Education,50,"19,900",36,14
+Capital,Computers and Math,30,"5,600",36,-6
+Capital,Business and Finance,30,"29,000",36,-6
+Capital,Health,40,13600,36,4
+Central New York,Agriculture,100,"3,200",47,53
+Central New York,Art,100,"3,400",47,53
+Central New York,Technical trades,30,"4,300",47,-17
+Central New York,Communications and Media,100,"3,000",47,53
+Central New York,Law and Public Service,100,"7,100",47,53
+Central New York,"Science, Engineering",100,"9,900",47,53
+Central New York,Social Services,55,"4,900",47,8
+Central New York,Hospitality,45,"1,800",47,-2
+Central New York,Education,53,"13,200",47,6
+Central New York,Health,65,"14,600",47,18
+Central New York,Computers and Math,85,"5,400",47,38
+Central New York,Business and Finance,35,"18,000",47,-12
+Finger Lakes,Agriculture,100,"3,500",30,70
+Finger Lakes,Art,100,"8,000",30,70
+Finger Lakes,Technical trades,25,"3,400",30,-5
+Finger Lakes,Communications and Media,100,"4,400",30,70
+Finger Lakes,Law and Public Service,100,"12,200",30,70
+Finger Lakes,"Science, Engineering",100,"17,000",30,70
+Finger Lakes,Social Services,58,"7,500",30,28
+Finger Lakes,Hospitality,50,"3,100",30,20
+Finger Lakes,Education,53,"27,900",30,23
+Finger Lakes,Health,55,"19,700",30,25
+Finger Lakes,Computers and Math,30,"3,400",30,0
+Finger Lakes,Business and Finance,53,"37,900",30,23
+Hudson Valley,Agriculture,100,"2,240",16,84
+Hudson Valley,Art,100,"10,900",16,84
+Hudson Valley,Technical trades,16,"4,000",16,0
+Hudson Valley,Communications and Media,100,"4,300",16,84
+Hudson Valley,Law and Public Service,40,"2,300",16,24
+Hudson Valley,"Science, Engineering",70,"11,900",16,54
+Hudson Valley,Social Services,45,"10,000",16,29
+Hudson Valley,Hospitality,18,"2,200",16,2
+Hudson Valley,Education,30,"25,000",16,14
+Hudson Valley,Health,25,"15,800",16,9
+Hudson Valley,Computers and Math,27,"5,500",16,11
+Hudson Valley,Business and Finance,20,"28,400",16,4
+Long Island,Agriculture,100,"2,600",47,53
+Long Island,Art,100,"23,900",47,53
+Long Island,Technical trades,30,"8,200",47,-17
+Long Island,Communications and Media,65,"4,800",47,18
+Long Island,Law and Public Service,90,"18,000",47,43
+Long Island,"Science, Engineering",100,"30,700",47,53
+Long Island,Social Services,90,"18,300",47,43
+Long Island,Hospitality,20,"3,100",47,-27
+Long Island,Education,30,"22,700",47,-17
+Long Island,Health,40,"33,100",47,-7
+Long Island,Computers and Math,40,"9,800",47,-7
+Long Island,Business and Finance,35,"62,400",47,-12
+Mohawk Valley,Agriculture,100,"2,600",73,27
+Mohawk Valley,Art,100,"1,700",73,27
+Mohawk Valley,Technical trades,100,"3,700",73,27
+Mohawk Valley,Communications and Media,100,"1,200",73,27
+Mohawk Valley,Law and Public Service,53,"2,200",73,-20
+Mohawk Valley,"Science, Engineering",100,"3,800",73,27
+Mohawk Valley,Social Services,47,"2,700",73,-26
+Mohawk Valley,Hospitality,45,"1,100",73,-28
+Mohawk Valley,Education,65,"10,100",73,-8
+Mohawk Valley,Health,45,"6,400",73,-28
+Mohawk Valley,Computers and Math,80,"2,400",73,7
+Mohawk Valley,Business and Finance,42,"9,800",73,-31
+New York City,Agriculture,100,600,4,96
+New York City,Art,75,"35,400",4,71
+New York City,Technical trades,4,"1,500",4,0
+New York City,Communications and Media,5,"3,000",4,1
+New York City,Law and Public Service,12,"3,500",4,8
+New York City,"Science, Engineering",25,"14,000",4,21
+New York City,Social Services,15,"9,300",4,11
+New York City,Hospitality,2,"1,000",4,-2
+New York City,Education,7,"6,400",4,3
+New York City,Health,8,"11,700",4,4
+New York City,Computers and Math,5,"4,300",4,1
+New York City,Business and Finance,5,"21,500",4,1
+North Country,Agriculture,100,"1,600",73,27
+North Country,Art,100,"1,300",73,27
+North Country,Technical trades,65,"2,200",73,-8
+North Country,Communications and Media,100,600,73,27
+North Country,Law and Public Service,70,"3,600",73,-3
+North Country,"Science, Engineering",100,"4,100",73,27
+North Country,Social Services,75,"3,200",73,2
+North Country,Hospitality,30,700,73,-43
+North Country,Education,85,"11,400",73,12
+North Country,Health,82,"7,900",73,9
+North Country,Computers and Math,100,"2,500",73,27
+North Country,Business and Finance,65,"9,500",73,-8
+Southern Tier,Agriculture,100,"2,600",58,42
+Southern Tier,Art,100,"2,100",58,42
+Southern Tier,Technical trades,80,"3,800",58,22
+Southern Tier,Communications and Media,100,"1,700",58,42
+Southern Tier,Law and Public Service,95,"4,400",58,37
+Southern Tier,"Science, Engineering",90,"10,100",58,32
+Southern Tier,Social Services,45,"3,200",58,-13
+Southern Tier,Hospitality,40,"1,500",58,-18
+Southern Tier,Education,65,"13,500",58,7
+Southern Tier,Health,70,"10,900",58,12
+Southern Tier,Computers and Math,100,"4,800",58,42
+Southern Tier,Business and Finance,65,"19,400",58,7
+Western NY,Agriculture,100,"2,200",64,36
+Western NY,Art,100,"8,300",64,36
+Western NY,Technical trades,65,"4,300",64,1
+Western NY,Communications and Media,100,"19,200",64,36
+Western NY,Law and Public Service,100,"14,400",64,36
+Western NY,"Science, Engineering",100,"42,600",64,36
+Western NY,Social Services,65,"3,700",64,1
+Western NY,Hospitality,40,"2,700",64,-24
+Western NY,Education,85,"8,100",64,21
+Western NY,Health,70,"6,700",64,6
+Western NY,Computers and Math,45,"4,100",64,-19
+Western NY,Business and Finance,40,"37,100",64,-24
