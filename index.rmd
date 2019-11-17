@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Introduction
+## Introduction 
 
 The State University of New York (SUNY) is one of the largest public higher education systems in the country, with 64 total institutions spread across 10 state regions.  These regions are highly varied, and include a megacity, the rural periphery, and several old industrial cities experiencing population loss.  The institutions are varied too, and include research universities, comprehensive colleges, community colleges, and technical institutes.
 
@@ -43,11 +43,11 @@ library(lattice)
 
 ```
 
-## Methods and Materials
+## Methods and Materials 
 
 This project uses data compiled from the US Census American Community survey, the 2011 Rockefeller SUNY Impact Report, and the SUNY gradwages dashboard.  I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
 
-## Part I.  Where do SUNY students come from?
+## Part I.  Where do SUNY students come from? 
 
 The majority of SUNY students attend college within their own region.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.  
 
@@ -79,9 +79,9 @@ ggplot(origins, aes(x = Region, y = Value,
 
 ```
 
-## Part II.  How important are SUNY graduates to each region's workforce?
+## Part II.  How important are SUNY graduates to each region's workforce? 
 
-The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a dispropotionate part of total graduates in rural parts of the state like Mohawk Valley and North Country.  
+The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a disproportionate part of total graduates in rural parts of the state like Mohawk Valley and North Country.  
 
 Despite making up a smaller share of total graduates in the Capital District, SUNY graduates are about 35% of the total workforce there (which is highly educated on the whole).  
 
@@ -152,7 +152,7 @@ Of course, there is likely significant self-selection bias at work here, as stud
 ```
 
 
-## Part III.  How well do skills of local SUNY graduates match regional labor market needs?
+## Part III.  How well do skills of local SUNY graduates match regional labor market needs? 
 
 An important dimension of any public university's impact is whether the skills of their graduates match demand.  By comparing the types degrees held by alums as a percent of total regional jobs requiring a related degree (this data comes from the NY Department of Labor via the Rockefeller Center) to SUNY alums as a percent of total regional graduates (the dashed reference line), the series of bar plots below depict this skills (mis)match.
 
@@ -192,7 +192,7 @@ ggplot(skills) +
 
 ```
 
-## Part IV.  Regional Education Attainment and Income
+## Part IV.  Regional Education Attainment and Income 
 
 There is abundant evidence that the social returns to education exceed the private returns, as higher educational attainment rates lead to productivity and wage gains for the entire workforce (Moretti 2004, 2012).  
 Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.  But there is some variation within the state.  
