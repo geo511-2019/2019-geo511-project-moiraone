@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The State University of New York (SUNY) is one of the largest public higher education systems in the country, with 64 total institutions spread across 10 state regions.  These regions are highly varied, and include a megacity, the rural periphery, and several old industrial cities experiencing population loss.  The institutions are varied too, and include research universities, comprehensive colleges, community colleges, and technical institutes.
 
-SUNY's heterogenous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu).
+SUNY's heterogenous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu). 
 
 How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary assessment of SUNY's role in attracting, forming, and retaining human capital in different parts of the state.  A conclusion section highlights the strengths of the system as well as several opportunities for improvement.
 
@@ -47,7 +47,7 @@ library(lattice)
 
 This project uses data compiled from the US Census American Community survey, the 2011 Rockefeller SUNY Impact Report, and the SUNY gradwages dashboard.  I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
 
-## Part I.  Where do SUNY students come from?
+## Part I.  Where do SUNY students come from? 
 
 The majority of SUNY students attend college within their own region.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.  
 
@@ -79,7 +79,7 @@ ggplot(origins, aes(x = Region, y = Value,
 
 ```
 
-## Part II.  How important are SUNY graduates to each region's workforce?
+## Part II.  How important are SUNY graduates to each region's workforce? 
 
 The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a dispropotionate part of total graduates in rural parts of the state like Mohawk Valley and North Country.  
 
@@ -158,7 +158,7 @@ An important dimension of any public university's impact is whether the skills o
 
 Overall, there is an impressive consistency between SUNY graduates' skills and regional labor market demand.  But there are some notable mismatches.  In all cases, there is an oversupply of agricultural and art degrees.  The largest and most consistent undersupply is in hospitality.  Mohawk Valley, Long Island, and Western New York appear to have the least perfect relationship between skills supplied and skills demanded. 
 
-Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically.
+Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically. 
 
 ```{r skillsmatch, echo = TRUE}
 
@@ -197,7 +197,7 @@ ggplot(skills) +
 There is abundant evidence that the social returns to education exceed the private returns, as higher educational attainment rates lead to productivity and wage gains for the entire workforce (Moretti 2004, 2012).  
 Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.  But there is some variation within the state.  
 
-[MORE HERE]
+[MORE HERE] 
 
 ``` {r NY educational attainment, echo = TRUE}
 
