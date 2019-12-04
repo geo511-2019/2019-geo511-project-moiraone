@@ -13,11 +13,11 @@ knitr::opts_chunk$set(echo = TRUE)
 
 The State University of New York (SUNY) is one of the largest public higher education systems in the country, with 64 total institutions spread across 10 state regions.  These regions are highly varied, and include a megacity, the rural periphery, and several old industrial cities experiencing population loss.  The institutions are varied too, and include research universities, comprehensive colleges, community colleges, and technical institutes.
 
-SUNY's heterogenous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu).
+SUNY's heterogeneous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu).
 
 How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary assessment of SUNY's role in attracting, forming, and retaining human capital in different parts of the state.  A conclusion section highlights the strengths of the system as well as several opportunities for improvement.
 
-```{r packages, echo = TRUE}
+```{r packages, message = F, results = "hide", echo = TRUE}
 
 library(readr)
 library(ggplot2)
@@ -31,37 +31,83 @@ library(kableExtra)
 library(latex2exp)
 library(egg)
 library(gridExtra)
-library(directlabels)
 library(lattice)
+library(spData)
+library(sf)
+library(tidyverse)
+library(tigris)
+library(rgdal)
+library(sp)
+library(rgeos)
+library(ggmap)
+library(plotly)
 
+census_api_key("7912510ff91a51de560cf1e9160860875f062880")
+Sys.setenv("plotly_username" = "moiraone")
+Sys.setenv("plotly_api_key" = "••••••••••")
 
 ```
 
-```{r map, echo = TRUE}
+```{r map, message = F, results = "hide", echo = TRUE}
 
-# population map, outline regions, institutional locations
+#load new york counties from tigris
+ny <- counties("NY")
+ny <- counties("NY", cb = TRUE, resolution = "5m")
 
+#load regions and school locations
+regions <- read_csv("Census_geography.csv")
+
+#join region attribute with spatial data
+ny_regions <- merge(ny, regions, by.x = "NAME", by.y = "County")
+class(ny_regions)
+
+#convert sp to sf
+ny_regions <- st_as_sf(ny_regions)
+
+#dissolve county borders
+ny_regions_dissolved <-
+    ny_regions %>%
+    group_by(Region) %>%
+  summarise(status = 'dissolved')
+
+#load school locations
+schools <- read_csv("SUNY_locations_and_student_counts.csv")
+#join school locations to ny regions
+schools2 <- merge(ny_regions_dissolved, schools, by = "Region")
+
+#plot regions on map
+ggplot() +
+  geom_sf(ny_regions_dissolved, mapping = aes(fill = Region))+
+  scale_fill_brewer(palette = "Paired")+
+  geom_point(data = schools, mapping = aes(x= lon, y = lat, shape = Level))+
+  ggtitle("SUNY Institutional Distribution by Region")+
+  theme_bw()+
+  theme(axis.title.x = element_blank(),
+           axis.title.y = element_blank()
+  )
+
+  
 ```
 
 ## Methods and Materials
 
-This project uses data compiled from the US Census American Community survey, the 2011 Rockefeller SUNY Impact Report, and the SUNY gradwages dashboard.  I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
+This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
 
-## Part I.  Where do SUNY students come from?
+## Part I.  Enrollment
 
-The majority of SUNY students attend college within their own region.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.  
+The majority of SUNY students attend college within their own region.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.
 
+```{r students, message = F, results = "hide", echo = TRUE}
 
-```{r students, echo = TRUE}
-
-#stacked bar plot
-
+#load student origin data
 origins <- read_csv("suny_student_origins.csv")
 
+#build stacked bar plot
 ggplot(origins, aes(x = Region, y = Value, 
                fill = Key))+
   geom_col(position = position_stack(reverse = FALSE))+
   scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
   theme(axis.text.x = element_text(angle = 90, 
                                    hjust = 1),
         axis.text = element_text(size = 7),
@@ -74,7 +120,7 @@ ggplot(origins, aes(x = Region, y = Value,
           )+
   labs(title = "SUNY Student Origins by Region",
        y = "Percent of Total Students",
-       caption = "Data: Rockefeller Impact Report"
+       caption = "Data: Rockefeller Center"
        )
 
 ```
@@ -87,16 +133,17 @@ Despite making up a smaller share of total graduates in the Capital District, SU
 
 SUNY graduates in New York City were mostly educated outside of the region.  The opposite is true of Western New York; of the more than 60% of area graduates that are SUNY alums, about 55% were educated at regional schools.  
 
-```{r suny alums grads, echo = TRUE}
+```{r suny alums grads, message = F, results = "hide", echo = TRUE}
 
+#load grad retention data
 grad_retention <- read_csv("grad_retention_percent_ttl_grads.csv")
 
-view(grad_retention)
-
+#plot grad retention total graduates
 ggplot(grad_retention, aes(x = Region, y = Value,
                            fill = Key))+
   geom_col(position = position_stack(reverse = FALSE))+
   scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
   theme(axis.text.x = element_text(angle = 90, 
                                    hjust = 1),
         axis.text = element_text(size = 7),
@@ -110,20 +157,21 @@ ggplot(grad_retention, aes(x = Region, y = Value,
   )+
   labs(title = "SUNY Alums as a Percent of Graduates in Region",
        y = "Percent of Total Graduates",
-       caption = "Data: Rockefeller Impact Report")
+       caption = "Data: Rockefeller Center")
 
 ```
 
-``` {r suny alums workforce, echo = TRUE}
+``` {r suny alums workforce, message = F, results = "hide", echo = TRUE}
 
+#load workforce grad retention data
 grad_retention <- read_csv("grad_retention_percent_ttl_workforce.csv")
 
-view(grad_retention)
-
+#build stacked bar plot
 ggplot(grad_retention, aes(x = Region, y = Value,
                            fill = Key))+
   geom_col(position = position_stack(reverse = FALSE))+
   scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
   theme(axis.text.x = element_text(angle = 90, 
                                    hjust = 1),
         axis.text = element_text(size = 7),
@@ -137,17 +185,57 @@ ggplot(grad_retention, aes(x = Region, y = Value,
   )+
   labs(title = "SUNY Alums as a Percent of Regional Workforce",
        y = "Percent of Total Workforce",
-       caption = "Data: Rockefeller Impact Report")
+       caption = "Data: Rockefeller Center")
 
 
 ```
 
 The level of educational attainment matters, too.  Graduates of technical, community, and comprehensive colleges are all more likely than research university graduates to remain in New York state 10 years after graduation.  
-Of course, there is likely significant self-selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students' needs.  Higher wage premiums (versus national median wages) at all levels of education reinforce the benefits of access.
 
-``` {r institutional level and wages, retention, echo = TRUE}
+```{r institutional level wages and retention, message = F, results = "hide", echo = TRUE}
 
-# degree level and field and wage, destination table
+#load wage data
+wages <- read_csv("SUNY_locations_enrollment_wages.csv")
+
+p <- ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
+  geom_point()+
+  scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
+  ggtitle("Graduate Wages and New York Residency after 10 Years")+
+  labs(x = "Wages 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years")
+
+#plotly
+
+ggplotly(p)
+
+```
+Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students' needs.  Higher wage premiums (versus national median wages) at all levels of education reinforce the benefits of access.
+
+``` {r institutional level and wages, message = F, results = "hide", echo = TRUE}
+
+#call wage data 
+
+ggplot(schools, aes(x = Wage_premium, fill = Level))+
+  geom_density(alpha = 0.5, color = F)+
+  labs(x = "Wage Premium %", y = "Density")+
+  theme_bw()+
+  scale_fill_brewer(palette = "Paired")+
+  ggtitle("Distribution of Wage Premium by Type of Institution")
+
+
+```
+
+``` {r institutional level and wages 2, message = F, results = "hide", echo = TRUE}
+
+#call wage data 
+
+ggplot(schools, aes(x = Wage_premium, fill = Region))+
+  geom_density(alpha = 0.5, color = F)+
+  labs(x = "Wage Premium %", y = "Density")+
+  theme_bw()+
+  scale_fill_brewer(palette = "Paired")+
+  ggtitle("Distribution of Wage Premium by Region")
+
 
 ```
 
@@ -160,12 +248,14 @@ Overall, there is an impressive consistency between SUNY graduates' skills and r
 
 Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically.
 
-```{r skillsmatch, echo = TRUE}
+```{r skillsmatch, message = F, results = "hide", echo = TRUE}
 
 
 #load Skills Match Data from CSV file
 skills <- read_csv("suny_skills_match_by_region.csv")
 
+
+#build faceted bar graphs w ref lines
 ggplot(skills) + 
   geom_col(aes(x = Field , y = Degrees, fill = Field), 
            position = "dodge")+
@@ -173,6 +263,7 @@ ggplot(skills) +
   labs(x = "Field", 
        y = "SUNY Degrees as a % of Jobs Requiring One",
        caption = "--- SUNY graduates as a proportion of total regional graduates")+
+  theme_bw()+
   theme(axis.text.x = element_blank(),
         axis.ticks.x = element_blank()
         )+
@@ -199,7 +290,7 @@ Between 2005 and 2017, New York State's median educational attainment and income
 
 [MORE HERE]
 
-``` {r NY educational attainment, echo = TRUE}
+``` {r NY educational attainment, message = F, results = "hide", echo = TRUE}
 
 regional_ed <- read_csv("suny_regional_education_tidy.csv")
 
@@ -229,25 +320,22 @@ plot + geom_line(data = NY,
   geom_line(data = USA, 
             aes(x = Year, y = bach_or_higher), 
             col = "Black", linetype = "dashed", size = 1)+
+  theme_bw()+
   theme(panel.grid.major = element_blank())+
   labs(x = "Year", 
        y = "% Population with Bachelor's or Higher", 
        title = "Educational Attainment in New York State",
-       caption = "Data compiled from US Census 5-year ACS Estimates"
+       caption = "Solid line represents New York rates; Dashed line represents US rates"
          )
 
 ```
 
 
-``` {r income, echo = TRUE}
+``` {r income, message = F, results = "hide", echo = TRUE}
 
 
 #load income data from .csv file
 regional_income <- read_csv("suny_regional_income_data_tidy.csv")
-
-#View data
-View(regional_income)
-colnames(regional_income)
 
 #isolate NY and USA
 
@@ -277,6 +365,7 @@ base_plot +
   geom_line(data = USA, 
             aes(x = Year, y = Income), 
             col = "Black", linetype="dashed", size = 1)+
+  theme_bw()+
   theme(panel.grid.major = element_blank())+
   labs(x = "Year", 
        y = "Median Income", 
