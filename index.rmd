@@ -19,7 +19,7 @@ How well does the SUNY system fulfill this mission at the regional and state sca
 
 ## Methods and Materials
 
-This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  To explore the various roles SUNY plays in each region, I use a series of line, plot, and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region and within the state.
+This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  To explore the various roles SUNY plays in each region, I use a series of histograms, line, plot, and bar graphs, some with reference lines, to visually convey the different roles the SUNY system plays within each region and within the state.
 
 ```{r packages, message = F, results = "hide", echo = TRUE}
 
@@ -290,7 +290,7 @@ ggplot(skills) +
 
 ```
 
-## Conclusions
+## Conclusions and Additional Research Questions
 
 In many ways, the SUNY state system is a model for human capital formation at different individual preferences and abilities, economic means, and space.  
 Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.
@@ -384,9 +384,12 @@ Yet there is significant variation between regions, and SUNY tends to play a mor
 
 The following research question emerged from this preliminary analysis:
 
-1) What explains the skills gap in places like Mohawk Valley and Western New York?  
+What explains the skills gap in places like Mohawk Valley and Western New York?  
+From the supply side, are area institutions sufficiently coordinating their program offerings to meet labor market demand? 
 
-From a supply side, are area institutions sufficiently coordinating their program offerings to meet labor market demand? Or are broader market forces shaping student choices about which programs of study to pursue?
+Or, on the demand side, are broader market forces shaping student choices about which programs of study to pursue?  Either due to perceived payoffs or personal preference?
+
+Thanks to this exploratory analysis, we also know that Central New York and the Capital District have had more success in both matching SUNY graduates' skills to the regional labor market, and are both nearer the state/national medians for income and educational attainment.  So a comparative analysis may help to illuminate why.
 
 
 

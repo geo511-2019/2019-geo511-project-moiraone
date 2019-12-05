@@ -373,7 +373,7 @@ div.tocify {
 </div>
 <div id="methods-and-materials" class="section level2">
 <h2>Methods and Materials</h2>
-<p>This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard. To explore the various roles SUNY plays in each region, I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region. I also compile several tables to organize information about median wages and destination by degree level and field of study.</p>
+<p>This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard. To explore the various roles SUNY plays in each region, I use a series of line, plot, and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region and within the state.</p>
 <pre class="r"><code>#load necessary packages
 
 library(readr)
@@ -405,7 +405,7 @@ Sys.setenv(&quot;plotly_api_key&quot; = &quot;••••••••••&quo
 </div>
 <div id="part-i.-who-suny-serves" class="section level2">
 <h2>Part I. Who SUNY serves</h2>
-<p>SUNY has campuses in every part of the state. Institutions tend to congregate near one another in the state’s largest metropolitan areas: New York City and its environs, the capital region of Albany, and Buffalo in Western New York. In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities. This means there are regional systems within the broader state system, and the institutions’ ability to coordinate their activities may have significant effects on surrounding areas.</p>
+<p>SUNY has campuses in every part of the state. Institutions tend to congregate near one another in the state’s largest metropolitan areas: New York City and its environs, the capital region of Albany, Syracuse in Central New York, and Buffalo in Western New York. In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities. This means there are regional systems within the broader state system.</p>
 <pre class="r"><code>#load new york counties from tigris
 ny &lt;- counties(&quot;NY&quot;)
 ny &lt;- counties(&quot;NY&quot;, cb = TRUE, resolution = &quot;5m&quot;)
@@ -530,6 +530,7 @@ ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
   geom_point()+
   scale_fill_brewer(palette = &quot;Paired&quot;)+
   theme_bw()+
+  theme(legend.key.size = unit(0.4, &quot;cm&quot;))+
   ggtitle(&quot;Graduate Wages and New York Residency after 10 Years&quot;)+
   labs(x = &quot;Wages 10 Years After Graduating&quot;, y = &quot;% Graduates Living in New York After 10 Years&quot;)</code></pre>
 <p><img src="index_files/figure-html/institutional%20level%20wages%20and%20retention-1.png" width="672" /> Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools. However, rather than diminish SUNY’s role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students’ needs. Higher wage premiums (versus regional median wages) at all levels of education reinforce the benefits of access.</p>
