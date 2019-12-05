@@ -19,7 +19,7 @@ How well does the SUNY system fulfill this mission at the regional and state sca
 
 ## Methods and Materials
 
-This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  To explore the various roles SUNY plays in each region, I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
+This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  To explore the various roles SUNY plays in each region, I use a series of line, plot, and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region and within the state.
 
 ```{r packages, message = F, results = "hide", echo = TRUE}
 
@@ -57,7 +57,7 @@ Sys.setenv("plotly_api_key" = "••••••••••")
 
 ## Part I.  Who SUNY serves
 
-SUNY has campuses in every part of the state.  Institutions tend to congregate near one another in the state's largest metropolitan areas: New York City and its environs, the capital region of Albany, and Buffalo in Western New York.  In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities.  This means there are regional systems within the broader state system, and the institutions' ability to coordinate their activities may have significant effects on surrounding areas.
+SUNY has campuses in every part of the state.  Institutions tend to congregate near one another in the state's largest metropolitan areas: New York City and its environs, the capital region of Albany, Syracuse in Central New York, and Buffalo in Western New York.  In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities.  This means there are regional systems within the broader state system.
 
 
 ```{r map, message = F, results = "hide", echo = TRUE}
@@ -209,6 +209,7 @@ ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
   geom_point()+
   scale_fill_brewer(palette = "Paired")+
   theme_bw()+
+  theme(legend.key.size = unit(0.4, "cm"))+
   ggtitle("Graduate Wages and New York Residency after 10 Years")+
   labs(x = "Wages 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years")
 
