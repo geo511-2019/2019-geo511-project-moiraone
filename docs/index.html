@@ -526,17 +526,13 @@ ggplot(grad_retention, aes(x = Region, y = Value,
 <pre class="r"><code>#load wage data
 wages &lt;- read_csv(&quot;SUNY_locations_enrollment_wages.csv&quot;)
 
-p &lt;- ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
+ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
   geom_point()+
   scale_fill_brewer(palette = &quot;Paired&quot;)+
   theme_bw()+
   ggtitle(&quot;Graduate Wages and New York Residency after 10 Years&quot;)+
-  labs(x = &quot;Wages 10 Years After Graduating&quot;, y = &quot;% Graduates Living in New York After 10 Years&quot;)
-
-#plotly
-
-ggplotly(p)</code></pre>
-<p>Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools. However, rather than diminish SUNY’s role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students’ needs. Higher wage premiums (versus regional median wages) at all levels of education reinforce the benefits of access.</p>
+  labs(x = &quot;Wages 10 Years After Graduating&quot;, y = &quot;% Graduates Living in New York After 10 Years&quot;)</code></pre>
+<p><img src="index_files/figure-html/institutional%20level%20wages%20and%20retention-1.png" width="672" /> Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools. However, rather than diminish SUNY’s role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students’ needs. Higher wage premiums (versus regional median wages) at all levels of education reinforce the benefits of access.</p>
 <pre class="r"><code>#call wage data 
 
 ggplot(schools, aes(x = Wage_premium, fill = Level))+
