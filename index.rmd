@@ -1,7 +1,7 @@
 ---
 title: 'A Regionalized SUNY Impact Assessment'
 author: "Moira O'Neill"
-date: "11/7/2019"
+date: "12/5/2019"
 output: html_document
 ---
 
@@ -15,9 +15,15 @@ The State University of New York (SUNY) is one of the largest public higher educ
 
 SUNY's heterogeneous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu).
 
-How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary assessment of SUNY's role in attracting, forming, and retaining human capital in different parts of the state.  A conclusion section highlights the strengths of the system as well as several opportunities for improvement.
+How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary assessment of SUNY's role in attracting, forming, and retaining human capital in different parts of the state.  The purpose of this exercise is 1) to identify strengths and weaknesses in the system, and 2) to generate research questions for further inquiry.
+
+## Methods and Materials
+
+This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  To explore the various roles SUNY plays in each region, I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
 
 ```{r packages, message = F, results = "hide", echo = TRUE}
+
+#load necessary packages
 
 library(readr)
 library(ggplot2)
@@ -47,6 +53,12 @@ Sys.setenv("plotly_username" = "moiraone")
 Sys.setenv("plotly_api_key" = "••••••••••")
 
 ```
+
+
+## Part I.  Who SUNY serves
+
+SUNY has campuses in every part of the state.  Institutions tend to congregate near one another in the state's largest metropolitan areas: New York City and its environs, the capital region of Albany, and Buffalo in Western New York.  In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities.  This means there are regional systems within the broader state system, and the institutions' ability to coordinate their activities may have significant effects on surrounding areas.
+
 
 ```{r map, message = F, results = "hide", echo = TRUE}
 
@@ -89,13 +101,7 @@ ggplot() +
   
 ```
 
-## Methods and Materials
-
-This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Center, and the SUNY gradwages dashboard.  I use a series of line and bar graphs with reference lines to visually convey the different roles the SUNY system plays within each region.  I also compile several tables to organize information about median wages and destination by degree level and field of study.
-
-## Part I.  Enrollment
-
-The majority of SUNY students attend college within their own region.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.
+The stacked bar plot below demonstrates that a majority of SUNY students attend college within their own region.  This is likely due to cost and information symmetries, as well as individual preference.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.  Both of these outliers are intuitive; New York is a global city, and Cornell is also an ivy league college with excellent name recognition.  Mohawk Valley happens to draw a large number of non-regional in-state students, but that's likely because its comprehensive college, SUNY Oneonta, straddles the border with the Southern Tier region (and is also just upstate from New York City). 
 
 ```{r students, message = F, results = "hide", echo = TRUE}
 
@@ -127,11 +133,11 @@ ggplot(origins, aes(x = Region, y = Value,
 
 ## Part II.  How important are SUNY graduates to each region's workforce?
 
-The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a dispropotionate part of total graduates in rural parts of the state like Mohawk Valley and North Country.  
+The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a dispropotionate number of total graduates in rural parts of the state like Mohawk Valley and North Country.  Graduates of regional SUNY schools make up over 50% of the North Country's total pool of residents with a degree, but total SUNY alums comprise more than 70% of area graduates.
 
-Despite making up a smaller share of total graduates in the Capital District, SUNY graduates are about 35% of the total workforce there (which is highly educated on the whole).  
+Despite making up a smaller share of total graduates in the Capital District, SUNY graduates are about 35% of the total workforce there (which is highly educated on the whole).
 
-SUNY graduates in New York City were mostly educated outside of the region.  The opposite is true of Western New York; of the more than 60% of area graduates that are SUNY alums, about 55% were educated at regional schools.  
+Consistent with Florida's (2002) "Creative Class" thesis, SUNY graduates in New York City were mostly educated outside of the region, and the city succeeds in "pulling" college graduates into town. The opposite is true of Western New York; of the more than 60% of area graduates that are SUNY alums, about 55% were educated at regional schools.  This may be because SUNY has monopolized higher education in the region (though that seems unlikely as there are several other private colleges in and around Buffalo), or because a high proportion of graduates decide to remain in the area after graduation, or because the region struggles to attract college graduates from elsewhere (again, the challenge Florida describes in The Creative Class).
 
 ```{r suny alums grads, message = F, results = "hide", echo = TRUE}
 
@@ -190,7 +196,9 @@ ggplot(grad_retention, aes(x = Region, y = Value,
 
 ```
 
-The level of educational attainment matters, too.  Graduates of technical, community, and comprehensive colleges are all more likely than research university graduates to remain in New York state 10 years after graduation.  
+Though a lot of research on the impact of local colleges and universities centers on knowledge spillovers and technology transfers, beyond a few central doctoral institutions, SUNY's primary role is to improve the state's human capital stocks.  That means who stays is at least as important as who comes - particularly in rural areas which by themselves are unlikely to attract much in-migration.  
+
+Here, the level of institution matters a lot.  Although their average wages are less than alums from doctoral institutions, graduates of technical, community, and comprehensive colleges are all more likely than research university graduates to remain in New York state 10 years after graduation.    
 
 ```{r institutional level wages and retention, message = F, results = "hide", echo = TRUE}
 
@@ -209,7 +217,7 @@ p <- ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
 ggplotly(p)
 
 ```
-Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students' needs.  Higher wage premiums (versus national median wages) at all levels of education reinforce the benefits of access.
+Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students' needs.  Higher wage premiums (versus regional median wages) at all levels of education reinforce the benefits of access.  
 
 ``` {r institutional level and wages, message = F, results = "hide", echo = TRUE}
 
@@ -242,11 +250,13 @@ ggplot(schools, aes(x = Wage_premium, fill = Region))+
 
 ## Part III.  How well do skills of local SUNY graduates match regional labor market needs?
 
-An important dimension of any public university's impact is whether the skills of their graduates match demand.  By comparing the types degrees held by alums as a percent of total regional jobs requiring a related degree (this data comes from the NY Department of Labor via the Rockefeller Center) to SUNY alums as a percent of total regional graduates (the dashed reference line), the series of bar plots below depict this skills (mis)match.
+An important dimension of any public university's impact is whether the skills of their graduates match demand.  Here, I compare the types degrees held by alums as a percent of total regional jobs requiring a related degree to SUNY alums as a percent of total regional graduates (the dashed reference line).  The series of bar plots below depict this skills (mis)match.
 
 Overall, there is an impressive consistency between SUNY graduates' skills and regional labor market demand.  But there are some notable mismatches.  In all cases, there is an oversupply of agricultural and art degrees.  The largest and most consistent undersupply is in hospitality.  Mohawk Valley, Long Island, and Western New York appear to have the least perfect relationship between skills supplied and skills demanded. 
 
-Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically.
+Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically.  
+
+More information about the kinds of programs institutions in each area offer is needed to understand what the skills issues are from a supply side.  In Western New York, it is worth exploring further whether the different levels of institutions adequately coordinate their offerings in response to local labor market needs.
 
 ```{r skillsmatch, message = F, results = "hide", echo = TRUE}
 
@@ -283,12 +293,10 @@ ggplot(skills) +
 
 ```
 
-## Part IV.  Regional Education Attainment and Income
+## Conclusions
 
-There is abundant evidence that the social returns to education exceed the private returns, as higher educational attainment rates lead to productivity and wage gains for the entire workforce (Moretti 2004, 2012).  
-Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.  But there is some variation within the state.  
-
-[MORE HERE]
+In many ways, the SUNY state system is a model for human capital formation at different individual preferences and abilities, economic means, and space.  
+Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.
 
 ``` {r NY educational attainment, message = F, results = "hide", echo = TRUE}
 
@@ -375,13 +383,18 @@ base_plot +
 
 ```
 
-## Conclusion
+Yet there is significant variation between regions, and SUNY tends to play a more important role in places with low educational attainment and income levels (like Mohawk Valley, North Country, and Western New York).  
 
-The SUNY system's ability to attract, shape, and retain human capital varies between regions.  
+The following research question emerged from this preliminary analysis:
 
-The system facilitates resident access through the strategic placement of the institutions themselves, and by offering a range of programs of study at various levels of depth.
+1) What explains the skills gap in places like Mohawk Valley and Western New York?  
 
-[MORE HERE]
+From a supply side, are area institutions sufficiently coordinating their program offerings to meet labor market demand? Or are broader market forces shaping student choices about which programs of study to pursue?
+
+
+
+
+
 
 
 
