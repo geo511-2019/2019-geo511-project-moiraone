@@ -205,16 +205,12 @@ Here, the level of institution matters a lot.  Although their average wages are 
 #load wage data
 wages <- read_csv("SUNY_locations_enrollment_wages.csv")
 
-p <- ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
+ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
   geom_point()+
   scale_fill_brewer(palette = "Paired")+
   theme_bw()+
   ggtitle("Graduate Wages and New York Residency after 10 Years")+
   labs(x = "Wages 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years")
-
-#plotly
-
-ggplotly(p)
 
 ```
 Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students' needs.  Higher wage premiums (versus regional median wages) at all levels of education reinforce the benefits of access.  
