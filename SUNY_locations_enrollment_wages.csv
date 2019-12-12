@@ -1,59 +1,59 @@
 ﻿Region,Institution,Level,x,y,Enrollment,Wages,Avg_Region_Income2015,Wage_premium,Residents
-New York City,Downstate Medical,Doctoral,-73.944614,40.654756,1846,130943,"38,384",241.1395373,76.4
-Central New York,Upstate Medical,Doctoral,-76.139566,43.042514,1537,104000,"31,323",232.024391,68.8
-New York City,College of Optometry,Doctoral,-73.98183,40.754645,330,110987,"38,384",189.1491246,56.6
-New York City,Maritime College,Technical,-73.801115,40.809189,1891,109171,"38,384",184.4179867,43.9
-Southern Tier,Binghamton,Doctoral,-75.969617,42.089377,16896,76229,"27,957",172.6651644,70.3
-Western New York,UB,Doctoral,-78.821228,42.959888,29850,69790,"28,395",145.7827082,68
-Mohawk Valley,SUNY IT,Community,-75.229169,43.135578,3023,72747,"29,808",144.0519324,84.4
-Long Island,Stony Brook,Doctoral,-73.123389,40.91238,25989,96165,"43,155",122.8362878,73.3
 Capital,Empire State,Comprehensive,-73.782099,43.077533,10424,76073,"34,233",122.2212485,75.4
-North Country,Plattsburgh,Comprehensive,-73.467186,44.692566,5297,56084,"25,586",119.1979989,76.9
-North Country,Potsdam,Comprehensive,-74.97616,44.664413,3521,53226,"25,586",108.0278277,74.5
 Capital,Albany,Doctoral,-73.824172,42.684497,17280,69659,"34,233",103.4849414,77.3
-New York City,Fashion Institute,Technical,-73.994816,40.747211,8846,77864,"38,384",102.8553564,74.3
-Hudson Valley,New Paltz,Comprehensive,-74.083646,41.744731,7857,71922,"36,329",97.9740703,80.2
-Central New York,Environmental Science and Forestry,Doctoral,-76.137033,43.034473,2220,61769,"31,323",97.20014047,57.2
-Central New York,Cortland,Comprehensive,-76.187692,42.600602,7110,60310,"31,323",92.54222137,81.2
-Mohawk Valley,Oneonta,Comprehensive,-75.063536,42.471071,6543,56245,"29,808",88.69095545,81.6
-Western New York,Alfred State,Technical,-77.794718,42.25548,3700,53452,"28,395",88.24440923,82.7
-Finger Lakes,Geneseo,Comprehensive,-77.821131,42.794663,5588,59149,"31,621",87.05607033,74.9
-Western New York,SUNY Fredonia,Comprehensive,-79.340331,42.453855,4655,53080,"28,395",86.93431942,79.7
-Central New York,Oswego,Comprehensive,-76.542475,43.45135,7986,58342,"31,323",86.25929828,81
-Finger Lakes,Brockport,Comprehensive,-77.950776,43.209959,8413,57908,"31,621",83.13146327,83.8
-Southern Tier,Delhi ,Technical,-74.924606,42.270669,2989,50188,"27,957",79.51854634,83.4
-Western New York,Buffalo State,Comprehensive,-78.881814,42.933989,10661,50847,"28,395",79.07025885,77.9
-North Country,Canton,Technical,-75.183447,44.60234,3800,45628,"25,586",78.33190026,81.7
-North Country,Clinton,Community,-73.439493,44.648364,2334,44945,"25,586",75.66247166,81.2
-Hudson Valley,Rockland,Community,-74.089356,41.133124,7159,63592,"36,329",75.04473011,73.4
-Hudson Valley,Westchester,Community,-73.789641,41.068579,13893,63591,"36,329",75.04197748,76.8
-North Country,North Country,Community,-74.120998,44.318959,2252,44358,"25,586",73.36824826,81.6
-Long Island,Farmingdale Tech,Technical,-73.426709,40.753061,9916,72752,"43,155",68.58301471,86.6
-Western New York,Erie County,Community,-78.723392,42.960082,11135,45792,"28,395",61.26782884,85.3
-Mohawk Valley,Mohawk Valley,Community,-75.218228,43.077183,7400,47186,"29,808",58.29978529,81.5
-Western New York,Niagara County,Community,-78.876922,43.146681,12266,44835,"28,395",57.89751717,87.5
-Hudson Valley,Orange,Community,-74.426051,41.438556,12959,56923,"36,329",56.68749484,82.7
-Mohawk Valley,Cobleskill,Technical,-74.498386,42.671643,2566,46659,"29,808",56.53180354,76.9
-Southern Tier,Tompkins Cortland,Community,-76.287489,42.502328,5513,43654,"27,957",56.14693994,81.8
-Hudson Valley,Purchase,Comprehensive,-73.700537,41.047132,4234,55870,"36,329",53.78898401,69.2
-Southern Tier,Broome,Community,-75.908329,42.135003,6734,42772,"27,957",52.992095,81.2
-North Country,Jefferson,Community,-75.934734,43.992297,3632,38637,"25,586",51.00836395,66.1
-Long Island,Old Westbury,Comprehensive,-73.573982,40.799542,5077,63882,"43,155",48.02919708,86.3
-Central New York,Morrisville,Comprehensive,-75.64031,42.895573,3454,46046,"31,323",47.00379913,78.5
-Southern Tier,Corning,Community,-77.072589,42.117438,5394,41073,"27,957",46.91490503,80.2
 Capital,Columbia-Greene,Community,-73.817817,42.2178,2102,49752,"34,233",45.33345018,83.6
-Central New York,Onondaga,Community,-76.194516,43.010436,11783,45463,"31,323",45.14254701,81.9
-Hudson Valley,Ulster,Community,-74.128978,41.851551,3686,52597,"36,329",44.77965262,83.1
-Mohawk Valley,Fulton-Montgomery,Community,-74.293181,42.983277,2842,42812,"29,808",43.62587225,81.5
-Hudson Valley,Dutchess,Community,-73.906736,41.722198,10329,51937,"36,329",42.96292218,81.2
-Western New York,Jamestown,Community,-79.318678,42.469024,2608,40541,"28,395",42.77513647,75.7
-Long Island,Nassau,Community,-73.593725,40.729368,19059,60396,"43,155",39.9513382,82.1
-Long Island,Suffolk ,Community,-73.053828,40.847274,26000,60231,"43,155",39.56899548,84.3
-Finger Lakes,Monroe,Community,-77.610061,43.101333,17699,43915,"31,621",38.87922583,84.7
-Central New York,Cayuga County,Community,-76.543486,42.944001,4719,41853,"31,323",33.61746959,82.1
-Mohawk Valley,Herkimer,Community,-74.988697,43.026138,3774,39711,"29,808",33.2226248,81
-Finger Lakes,Finger Lakes,Community,-77.241877,42.868156,6811,41602,"31,621",31.56446665,84.9
-Finger Lakes,Genesee,Community,-78.137622,43.017474,7365,40078,"31,621",26.74488473,85.7
-Hudson Valley,Sullivan,Community,-74.668808,41.764149,1749,45776,"36,329",26.00401883,78.3
 Capital,Adirondack,Community,-73.655358,43.351852,4098,43062,"34,233",25.79090351,83.8
 Capital,Schenectedy County,Community,-73.949405,42.81503,2144,42857,"34,233",25.19206614,83.9
+Central New York,Upstate Medical,Doctoral,-76.139566,43.042514,1537,104000,"31,323",232.024391,68.8
+Central New York,Environmental Science and Forestry,Doctoral,-76.137033,43.034473,2220,61769,"31,323",97.20014047,57.2
+Central New York,Cortland,Comprehensive,-76.187692,42.600602,7110,60310,"31,323",92.54222137,81.2
+Central New York,Oswego,Comprehensive,-76.542475,43.45135,7986,58342,"31,323",86.25929828,81
+Central New York,Morrisville,Comprehensive,-75.64031,42.895573,3454,46046,"31,323",47.00379913,78.5
+Central New York,Onondaga,Community,-76.194516,43.010436,11783,45463,"31,323",45.14254701,81.9
+Central New York,Cayuga County,Community,-76.543486,42.944001,4719,41853,"31,323",33.61746959,82.1
+Finger Lakes,Geneseo,Comprehensive,-77.821131,42.794663,5588,59149,"31,621",87.05607033,74.9
+Finger Lakes,Brockport,Comprehensive,-77.950776,43.209959,8413,57908,"31,621",83.13146327,83.8
+Finger Lakes,Monroe,Community,-77.610061,43.101333,17699,43915,"31,621",38.87922583,84.7
+Finger Lakes,Finger Lakes,Community,-77.241877,42.868156,6811,41602,"31,621",31.56446665,84.9
+Finger Lakes,Genesee,Community,-78.137622,43.017474,7365,40078,"31,621",26.74488473,85.7
+Hudson Valley,New Paltz,Comprehensive,-74.083646,41.744731,7857,71922,"36,329",97.9740703,80.2
+Hudson Valley,Rockland,Community,-74.089356,41.133124,7159,63592,"36,329",75.04473011,73.4
+Hudson Valley,Westchester,Community,-73.789641,41.068579,13893,63591,"36,329",75.04197748,76.8
+Hudson Valley,Orange,Community,-74.426051,41.438556,12959,56923,"36,329",56.68749484,82.7
+Hudson Valley,Purchase,Comprehensive,-73.700537,41.047132,4234,55870,"36,329",53.78898401,69.2
+Hudson Valley,Ulster,Community,-74.128978,41.851551,3686,52597,"36,329",44.77965262,83.1
+Hudson Valley,Dutchess,Community,-73.906736,41.722198,10329,51937,"36,329",42.96292218,81.2
+Hudson Valley,Sullivan,Community,-74.668808,41.764149,1749,45776,"36,329",26.00401883,78.3
+Long Island,Stony Brook,Doctoral,-73.123389,40.91238,25989,96165,"43,155",122.8362878,73.3
+Long Island,Farmingdale Tech,Technical,-73.426709,40.753061,9916,72752,"43,155",68.58301471,86.6
+Long Island,Old Westbury,Comprehensive,-73.573982,40.799542,5077,63882,"43,155",48.02919708,86.3
+Long Island,Nassau,Community,-73.593725,40.729368,19059,60396,"43,155",39.9513382,82.1
+Long Island,Suffolk ,Community,-73.053828,40.847274,26000,60231,"43,155",39.56899548,84.3
+Mohawk Valley,SUNY IT,Community,-75.229169,43.135578,3023,72747,"29,808",144.0519324,84.4
+Mohawk Valley,Oneonta,Comprehensive,-75.063536,42.471071,6543,56245,"29,808",88.69095545,81.6
+Mohawk Valley,Mohawk Valley,Community,-75.218228,43.077183,7400,47186,"29,808",58.29978529,81.5
+Mohawk Valley,Cobleskill,Technical,-74.498386,42.671643,2566,46659,"29,808",56.53180354,76.9
+Mohawk Valley,Fulton-Montgomery,Community,-74.293181,42.983277,2842,42812,"29,808",43.62587225,81.5
+Mohawk Valley,Herkimer,Community,-74.988697,43.026138,3774,39711,"29,808",33.2226248,81
+New York City,Downstate Medical,Doctoral,-73.944614,40.654756,1846,130943,"38,384",241.1395373,76.4
+New York City,College of Optometry,Doctoral,-73.98183,40.754645,330,110987,"38,384",189.1491246,56.6
+New York City,Maritime College,Technical,-73.801115,40.809189,1891,109171,"38,384",184.4179867,43.9
+New York City,Fashion Institute,Technical,-73.994816,40.747211,8846,77864,"38,384",102.8553564,74.3
+North Country,Plattsburgh,Comprehensive,-73.467186,44.692566,5297,56084,"25,586",119.1979989,76.9
+North Country,Potsdam,Comprehensive,-74.97616,44.664413,3521,53226,"25,586",108.0278277,74.5
+North Country,Canton,Technical,-75.183447,44.60234,3800,45628,"25,586",78.33190026,81.7
+North Country,Clinton,Community,-73.439493,44.648364,2334,44945,"25,586",75.66247166,81.2
+North Country,North Country,Community,-74.120998,44.318959,2252,44358,"25,586",73.36824826,81.6
+North Country,Jefferson,Community,-75.934734,43.992297,3632,38637,"25,586",51.00836395,66.1
+Southern Tier,Binghamton,Doctoral,-75.969617,42.089377,16896,76229,"27,957",172.6651644,70.3
+Southern Tier,Delhi ,Technical,-74.924606,42.270669,2989,50188,"27,957",79.51854634,83.4
+Southern Tier,Tompkins Cortland,Community,-76.287489,42.502328,5513,43654,"27,957",56.14693994,81.8
+Southern Tier,Broome,Community,-75.908329,42.135003,6734,42772,"27,957",52.992095,81.2
+Southern Tier,Corning,Community,-77.072589,42.117438,5394,41073,"27,957",46.91490503,80.2
+Western New York,UB,Doctoral,-78.821228,42.959888,29850,69790,"28,395",145.7827082,68
+Western New York,Alfred State,Technical,-77.794718,42.25548,3700,53452,"28,395",88.24440923,82.7
+Western New York,SUNY Fredonia,Comprehensive,-79.340331,42.453855,4655,53080,"28,395",86.93431942,79.7
+Western New York,Buffalo State,Comprehensive,-78.881814,42.933989,10661,50847,"28,395",79.07025885,77.9
+Western New York,Erie County,Community,-78.723392,42.960082,11135,45792,"28,395",61.26782884,85.3
+Western New York,Niagara County,Community,-78.876922,43.146681,12266,44835,"28,395",57.89751717,87.5
+Western New York,Jamestown,Community,-79.318678,42.469024,2608,40541,"28,395",42.77513647,75.7

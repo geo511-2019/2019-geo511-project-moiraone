@@ -2,7 +2,9 @@
 title: 'A Regionalized SUNY Impact Assessment'
 author: "Moira O'Neill"
 date: "12/5/2019"
-output: html_document
+output: 
+  html_document:
+  code_folding: hide
 ---
 
 ```{r setup, include=FALSE}
@@ -49,15 +51,13 @@ library(ggmap)
 library(plotly)
 
 census_api_key("7912510ff91a51de560cf1e9160860875f062880")
-Sys.setenv("plotly_username" = "moiraone")
-Sys.setenv("plotly_api_key" = "••••••••••")
 
 ```
 
 
 ## Part I.  Who SUNY serves
 
-SUNY has campuses in every part of the state.  Institutions tend to congregate near one another in the state's largest metropolitan areas: New York City and its environs, the capital region of Albany, Syracuse in Central New York, and Buffalo in Western New York.  In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities.  This means there are regional systems within the broader state system.
+SUNY has campuses in every part of the state.  Institutions tend to congregate near one another in the state's largest metropolitan areas: New York City and its environs, the capital region of Albany, Syracuse in Central New York, and Buffalo in Western New York.  In each of these areas, comprehensive college and community or technical colleges complement one or more doctoral universities.  
 
 
 ```{r map, message = F, results = "hide", echo = TRUE}
@@ -101,7 +101,7 @@ ggplot() +
   
 ```
 
-The stacked bar plot below demonstrates that a majority of SUNY students attend college within their own region.  This is likely due to cost and information symmetries, as well as individual preference.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students.  Both of these outliers are intuitive; New York is a global city, and Cornell is also an ivy league college with excellent name recognition.  Mohawk Valley happens to draw a large number of non-regional in-state students, but that's likely because its comprehensive college, SUNY Oneonta, straddles the border with the Southern Tier region (and is also just upstate from New York City). 
+The stacked bar plot below demonstrates that a majority of SUNY students attend college within their own region.  This is likely due to cost and information symmetries, as well as individual preference.  The two exceptions are New York City, which draws the most out-of-state students, and Southern Tier, which is home to Cornell University and attracts the largest number of international students. Both of these outliers are intuitive; New York is a global city, and Cornell is also an ivy league college with excellent name recognition.  Mohawk Valley happens to draw a large number of non-regional in-state students, but that's likely because its comprehensive college, SUNY Oneonta, straddles the border with the Southern Tier region (and is also just upstate from New York City). 
 
 ```{r students, message = F, results = "hide", echo = TRUE}
 
@@ -126,14 +126,14 @@ ggplot(origins, aes(x = Region, y = Value,
           )+
   labs(title = "SUNY Student Origins by Region",
        y = "Percent of Total Students",
-       caption = "Data: Rockefeller Center"
+       caption = "Data: Rockefeller Institute"
        )
 
 ```
 
 ## Part II.  How important are SUNY graduates to each region's workforce?
 
-The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a dispropotionate number of total graduates in rural parts of the state like Mohawk Valley and North Country.  Graduates of regional SUNY schools make up over 50% of the North Country's total pool of residents with a degree, but total SUNY alums comprise more than 70% of area graduates.
+The relative importance of SUNY alumni - and regional schools - to sub-state labor markets varies widely.  For example, SUNY graduates make up a disproportionate number of total graduates in rural parts of the state like Mohawk Valley and North Country.  Graduates of regional SUNY schools make up over 50% of the North Country's total pool of residents with a degree, but total SUNY alums comprise more than 70% of area graduates.
 
 Despite making up a smaller share of total graduates in the Capital District, SUNY graduates are about 35% of the total workforce there (which is highly educated on the whole).
 
@@ -163,7 +163,7 @@ ggplot(grad_retention, aes(x = Region, y = Value,
   )+
   labs(title = "SUNY Alums as a Percent of Graduates in Region",
        y = "Percent of Total Graduates",
-       caption = "Data: Rockefeller Center")
+       caption = "Data: Rockefeller Institute")
 
 ```
 
@@ -196,71 +196,16 @@ ggplot(grad_retention, aes(x = Region, y = Value,
 
 ```
 
-Though a lot of research on the impact of local colleges and universities centers on knowledge spillovers and technology transfers, beyond a few central doctoral institutions, SUNY's primary role is to improve the state's human capital stocks.  That means who stays is at least as important as who comes - particularly in rural areas which by themselves are unlikely to attract much in-migration.  
+## Part III.  Matching SUNY Graduates' Skills to Local Labor Markets
 
-Here, the level of institution matters a lot.  Although their average wages are less than alums from doctoral institutions, graduates of technical, community, and comprehensive colleges are all more likely than research university graduates to remain in New York state 10 years after graduation.    
+An important dimension of any public university's impact is whether the skills of their graduates match demand.  Here, I compare degrees held by alums living in the region as a percent of total regional jobs requiring a related degree to SUNY alums as a percent of total regional graduates (the dashed reference line).  This data is from the Rockefeller Institute, which compiled graduate major information from the International Postsecondary Education Data System (IPEDS) and job demand estimates from the NY Department of Labor.  
+The series of bar plots below depict this skills (mis)match.
 
-```{r institutional level wages and retention, message = F, results = "hide", echo = TRUE}
-
-#load wage data
-wages <- read_csv("SUNY_locations_enrollment_wages.csv")
-
-ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
-  geom_point()+
-  scale_fill_brewer(palette = "Paired")+
-  theme_bw()+
-  theme(legend.key.size = unit(0.4, "cm"))+
-  ggtitle("Graduate Wages and New York Residency after 10 Years")+
-  labs(x = "Wages 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years")
-
-```
-Of course, there is likely significant selection bias at work here, as students who prefer to remain close to home may opt to attend smaller local schools.  However, rather than diminish SUNY's role, such cases demonstrate the importance of providing a range of localized options to meet geographically isolated students' needs.  Higher wage premiums (versus regional median wages) at all levels of education reinforce the benefits of access.  
-
-``` {r institutional level and wages, message = F, results = "hide", echo = TRUE}
-
-#call wage data 
-
-ggplot(schools, aes(x = Wage_premium, fill = Level))+
-  geom_density(alpha = 0.5, color = F)+
-  labs(x = "Wage Premium %", y = "Density")+
-  theme_bw()+
-  scale_fill_brewer(palette = "Paired")+
-  ggtitle("Distribution of Wage Premium by Type of Institution")
-
-
-```
-
-``` {r institutional level and wages 2, message = F, results = "hide", echo = TRUE}
-
-#call wage data 
-
-ggplot(schools, aes(x = Wage_premium, fill = Region))+
-  geom_density(alpha = 0.5, color = F)+
-  labs(x = "Wage Premium %", y = "Density")+
-  theme_bw()+
-  scale_fill_brewer(palette = "Paired")+
-  ggtitle("Distribution of Wage Premium by Region")
-
-
-```
-
-
-## Part III.  How well do skills of local SUNY graduates match regional labor market needs?
-
-An important dimension of any public university's impact is whether the skills of their graduates match demand.  Here, I compare the types degrees held by alums as a percent of total regional jobs requiring a related degree to SUNY alums as a percent of total regional graduates (the dashed reference line).  The series of bar plots below depict this skills (mis)match.
-
-Overall, there is an impressive consistency between SUNY graduates' skills and regional labor market demand.  But there are some notable mismatches.  In all cases, there is an oversupply of agricultural and art degrees.  The largest and most consistent undersupply is in hospitality.  Mohawk Valley, Long Island, and Western New York appear to have the least perfect relationship between skills supplied and skills demanded. 
-
-Because of how significant alums are to Mohawk Valley's labor pool, the skills mismatch in business, healthcare, education, law and public service, and social services is likely constraining economic growth in this region most dramatically.  
-
-More information about the kinds of programs institutions in each area offer is needed to understand what the skills issues are from a supply side.  In Western New York, it is worth exploring further whether the different levels of institutions adequately coordinate their offerings in response to local labor market needs.
 
 ```{r skillsmatch, message = F, results = "hide", echo = TRUE}
 
-
 #load Skills Match Data from CSV file
 skills <- read_csv("suny_skills_match_by_region.csv")
-
 
 #build faceted bar graphs w ref lines
 ggplot(skills) + 
@@ -290,10 +235,174 @@ ggplot(skills) +
 
 ```
 
+Overall, there is impressive consistency between SUNY graduates' skills and regional labor market demand.  But there are some notable mismatches.  In all cases, there is an oversupply of agriculture and art degrees.  The largest and most consistent undersupply is in hospitality.  Mohawk Valley, Long Island, and Western New York appear to have the least perfect relationship between skills supplied and skills demanded.  Central New York, Southern Tier, New York City, and the Capital District all fare better, though in different ways.
+
+## Part IV.  Investigating the Skills Gap
+
+Are these skills gaps primarily caused by broader market trends, such as higher demand for certain kinds of skills outside of the region?  Graduate retention and wage rates are a good proxy for the level of market power and degree of specialization alums hold, and help to illuminate whether students may have better job options elsewhere.        
+
+```{r institutional level wages and retention, message = F, results = "hide", echo = TRUE}
+
+#load wage data
+wages <- read_csv("SUNY_locations_enrollment_wages.csv")
+
+ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
+  geom_point()+
+  scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
+  theme(legend.key.size = unit(0.4, "cm"))+
+  ggtitle("Graduate Wages and New York Residency after 10 Years")+
+  labs(x = "Wages 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years",
+       caption = "Data: SUNY Office of Institutional Research and Data Analytics")+
+  theme(plot.caption = element_text(size = 7))
+
+```
+
+From the above scatterplot, it does appear as though graduates of Community, Comprehensive, and Technical schools are all more likely to remain in NY state after graduating. They also tend to make less money.  
+
+However, while linear regressions reveal a significant and negative relationship between wages and percent of graduates who remain in New York State after graduating (the higher the grad's wages, the less likely they are to stay and work in NY), the overall explanatory power of this model is extremely weak (R2 = 0.03).
+
+
+```{r Wages Residency Status Regression, message = F, results = "hide", warning = F, echo = TRUE}
+
+programs <- read_csv("schools_programs_wages_residency.csv")
+
+#filter schools that don't have programs or have fewer than 10 graduates
+programs1 <- programs %>%
+  filter(Wages != 0)
+#linear regression wages residency status
+residentwages <- lm(Residents~Wages, data = programs1)
+#print summary
+summary(residentwages)
+
+```
+
+```{r Wage Premiums by School and Field of Study, results = "hide", warning = F, message = F, echo = TRUE}
+
+programs <- read_csv("schools_programs_wages_residency.csv")
+
+#calculate wage premiums by school and field of study
+programs_new <- programs %>%
+  filter(Wages != 0) %>%
+  mutate(wage_premium1 = Wages - Regional_Wages)%>%
+  mutate(wage_premium2 = wage_premium1/Regional_Wages)
+
+#linear regression wage premiums and NY residency
+residentwagepremium <- lm(Residents~wage_premium2, data = programs_new)
+
+#print summary
+summary(residentwagepremium)
+
+```
+
+The results of these regressions suggest the skills gaps depicted above may also be a supply side issue.  After all, not all SUNY schools offer degree programs in all fields, or they may be missing one or more degree levels in a given region.   To dig into this a bit, I look at field of study, NY state residency, and wage rates in a few regions of interest: Western New York, Mohawk Valley, and Long Island.  
+
+In Western New York, SUNY is undersupplying graduates in business and finance, computers and math, and hospitality.  One issue appears to be weak retention rates for graduates of the University at Buffalo (the only doctoral university in the area) in computers and math.  And no SUNY school in the area offers degrees in hospitality.
+
+```{r Case Study Program Wages Western NY, message = F, results = "hide", echo = TRUE}
+
+programs <- read_csv("schools_programs_wages_residency.csv")
+
+#calculate average wages by program of study in each region
+programs2 <- programs_new %>%
+  group_by(Region) %>%
+filter(Region == "Western New York")
+  
+#organize graphics
+ggplot(programs2, aes(x = wage_premium2, y = Residents, col = Level))+
+  geom_point()+
+  scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
+  theme(legend.key.size = unit(0.4, "cm"))+
+  ggtitle("Western New York: Graduate Wages and New York Residency after 10 Years")+
+  labs(x = "Wage Premium 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years")+
+   theme_bw()+
+  facet_wrap(~Program)+
+  theme(legend.position = "bottom", 
+        legend.box = "horizontal", 
+        legend.text = element_text(size = 8),
+        legend.key.size = unit(0.4, "cm"),
+        legend.title = element_blank(),
+        plot.caption = element_text(size = 7),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)
+        )
+
+```
+
+Mohawk Valley, a rural area in the center of the state, presents skills gaps in business and finance, education, health, hospitality, law and public service, and social services.
+
+There are no doctoral universities in the region, so the gap in law and public service may be partially due to the absence of a law school (the only SUNY law school is at UB in Western New York).  A similar challenge is likely happening in the local healthcare industry.  Despite several degree programs at community, comprehensive, and technical schools, the absence of a medical school means demand for certain high-level skills is outstripping supply.
+
+Retention rates are quite low for education and social service degree recipients, which may be driving the gap there.
+
+```{r Case Study Mohawk Valley Mohawk Valley, message = F, results = "hide", echo = TRUE}
+#calculate average wages by program of study in Mohawk Valley region
+programs3 <- programs_new %>%
+  group_by(Region) %>%
+filter(Region == "Mohawk Valley")
+  
+#organize graphics
+ggplot(programs3, aes(x = wage_premium2, y = Residents, col = Level))+
+  geom_point()+
+  scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
+  theme(legend.key.size = unit(0.4, "cm"))+
+  ggtitle("Mohawk Valley: Graduate Wages and New York Residency after 10 Years")+
+  labs(x = "Wage Premium 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years",
+       caption = "Data: SUNY Office of Institutional Research and Data Analytics")+
+   theme_bw()+
+  facet_wrap(~Program)+
+  theme(legend.position = "bottom", 
+        legend.box = "horizontal", 
+        legend.text = element_text(size = 8),
+        legend.key.size = unit(0.4, "cm"),
+        legend.title = element_blank(),
+        plot.caption = element_text(size = 7),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)
+        )
+
+```
+
+Long Island also presents skills gaps in business and finance, computers and math, education, health, hospitality, and technical trades.  Its doctoral institution, Stony Brook, is well known for its economics, math and computer science programs, and graduates may make more money elsewhere.  
+
+```{r Case Study Program Wages Capital, message = F, results = "hide", echo = TRUE}
+
+programs <- read_csv("schools_programs_wages_residency.csv")
+
+#calculate average wages by program of study in each region
+programs4 <- programs_new %>%
+  group_by(Region) %>%
+filter(Region == "Long Island")
+  
+#organize graphics
+ggplot(programs4, aes(x = wage_premium2, y = Residents, col = Level))+
+  geom_point()+
+  scale_fill_brewer(palette = "Paired")+
+  theme_bw()+
+  theme(legend.key.size = unit(0.4, "cm"))+
+  ggtitle("Long Island: Graduate Wages and New York Residency after 10 Years")+
+  labs(x = "Wage Premium 10 Years After Graduating", y = "% Graduates Living in New York After 10 Years",
+       caption = "Data: SUNY Office of Institutional Research and Data Analytics")+
+   theme_bw()+
+  facet_wrap(~Program)+
+  theme(legend.position = "bottom", 
+        legend.box = "horizontal", 
+        legend.text = element_text(size = 8),
+        legend.key.size = unit(0.4, "cm"),
+        legend.title = element_blank(),
+        plot.caption = element_text(size = 7),
+        axis.title.x = element_text(size = 10),
+        axis.title.y = element_text(size = 10)
+        )
+
+```
+
+
 ## Conclusions and Additional Research Questions
 
-In many ways, the SUNY state system is a model for human capital formation at different individual preferences and abilities, economic means, and space.  
-Between 2005 and 2017, New York State's median educational attainment and income rates have consistently exceeded national rates.
+In many ways, the SUNY state system is a model for human capital formation. Over the last 15 years, New York State's median educational attainment and have consistently exceeded national rates.  SUNY, which grants approximately 30% of postgraduate degrees in New York, may be largely to thank for this trend.
 
 ``` {r NY educational attainment, message = F, results = "hide", echo = TRUE}
 
@@ -330,67 +439,14 @@ plot + geom_line(data = NY,
   labs(x = "Year", 
        y = "% Population with Bachelor's or Higher", 
        title = "Educational Attainment in New York State",
-       caption = "Solid line represents New York rates; Dashed line represents US rates"
+       caption = "___ New York; -- US"
          )
 
 ```
 
+Yet there is significant variation between regions, and SUNY's role in helping to attract, form, and redistribute human capital also varies widely across the state.  While the system has a relatively small effect on New York City, it plays a fundamental role in the economy of rural (Mohawk Valley, North Country) and post-industrial areas (Western and Central New York). 
 
-``` {r income, message = F, results = "hide", echo = TRUE}
-
-
-#load income data from .csv file
-regional_income <- read_csv("suny_regional_income_data_tidy.csv")
-
-#isolate NY and USA
-
-NY <- regional_income %>%
-  filter(Region == "NY State")
-
-USA <- regional_income%>%
-  filter(Region == "USA")
-
-regional_income1 <- regional_income %>%
-  filter(Region != "NY State") %>%
-  filter(Region != "USA")
-
-#build line graphs by year, with NY and USA as reference lines
-
-base_plot <- ggplot(data = regional_income1, 
-       aes(x = Year, y = Income, col = Region))+
-  geom_line()
-
-#add NY State and USA as reference lines
-
-base_plot +
-  geom_line(data = NY, 
-            aes(x = Year, y = Income), 
-            col= "Black", size = 1)+
-  scale_color_brewer(palette = "Paired")+
-  geom_line(data = USA, 
-            aes(x = Year, y = Income), 
-            col = "Black", linetype="dashed", size = 1)+
-  theme_bw()+
-  theme(panel.grid.major = element_blank())+
-  labs(x = "Year", 
-       y = "Median Income", 
-       title = "Median Incomes in New York State",
-       caption = "Data compiled from U.S. 5-year ACS Estimates"
-         )
-
-```
-
-Yet there is significant variation between regions, and SUNY tends to play a more important role in places with low educational attainment and income levels (like Mohawk Valley, North Country, and Western New York).  
-
-The following research question emerged from this preliminary analysis:
-
-What explains the skills gap in places like Mohawk Valley and Western New York?  
-From the supply side, are area institutions sufficiently coordinating their program offerings to meet labor market demand? 
-
-Or, on the demand side, are broader market forces shaping student choices about which programs of study to pursue?  Either due to perceived payoffs or personal preference?
-
-Thanks to this exploratory analysis, we also know that Central New York and the Capital District have had more success in both matching SUNY graduates' skills to the regional labor market, and are both nearer the state/national medians for income and educational attainment.  So a comparative analysis may help to illuminate why.
-
+While this study generated a few preliminary answers to the questions raised throughout, more work is needed to understand the relationship between specific SUNY institutions and regional labor markets.  A more precise measure of skills supplied/skills demanded is in order, something I intend to continue to refine (thanks to some great ideas from my GEO 511 classmates!) in the coming weeks and months.
 
 
 
