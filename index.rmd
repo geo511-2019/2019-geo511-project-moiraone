@@ -2,9 +2,7 @@
 title: 'A Regionalized SUNY Impact Assessment'
 author: "Moira O'Neill"
 date: "12/5/2019"
-output: 
-  html_document:
-  code_folding: hide
+output: html_document
 ---
 
 ```{r setup, include=FALSE}
