@@ -15,11 +15,11 @@ The State University of New York (SUNY) is one of the largest public higher educ
 
 SUNY's heterogeneous geographic and institutional structure is designed to facilitate access and cultivate human capital at several degree levels.  This is explicit in SUNY's stated mission: to recognize the "fundamental role of its responsibilities in undergraduate education and [to provide] a full range of graduate and professional education that reflects the opportunity for individual choice and the needs of society" (suny.edu).
 
-How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary assessment of SUNY's role in attracting, forming, and retaining human capital in different parts of the state.  The purpose of this exercise is 1) to identify strengths and weaknesses in the system at the regional scale, and 2) to identify areas for further research.
+How well does the SUNY system fulfill this mission at the regional and state scales?  The following study offers a preliminary assessment of SUNY's role in attracting, forming, and retaining human capital in different parts of the state.  The regional scale is used to capture both the variety of needs across New York, but also because it demonstrates the interrelationships of different SUNY institutions in a given area.  The purpose of this exercise is 1) to identify strengths and weaknesses in the system at the regional scale, and 2) to offer some preliminary conclusions and identify areas for further research.
 
 ## II.  Methods and Materials
 
-This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Institute, and the SUNY gradwages dashboard.  To explore the various roles SUNY plays in each region, I use a series of line, plot, and bar graphs, some with reference lines, to visually convey the different roles the SUNY system plays within each region.
+This project uses data compiled from the Census Tigris package, US Census American Community survey, the Rockefeller Institute, and the SUNY gradwages dashboard.  I use a series of line, plot, and bar graphs, some with reference lines, to visually convey the different roles the SUNY system plays within each region.  A few linear regressions are also run to test for the strength of the relationship between graduate retention and wages earned 10 years after graduating.  
 
 ```{r packages, message = F, results = "hide", echo = TRUE}
 
@@ -253,7 +253,7 @@ ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
 
 From the above scatterplot, it appears as though graduates of Community, Comprehensive, and Technical schools are all more likely to remain in NY state after graduating. They also tend to make less money.  
 
-However, while linear regressions reveal a significant and negative relationship between wages and percent of graduates who remain in New York State after graduating (the higher the grad's wages, the less likely they are to stay and work in NY), the overall explanatory power of these models is extremely weak (R2 is less than 0.03).
+Linear regressions reveal a significant and negative relationship between wages and percent of graduates who remain in New York State after graduating (the higher the grad's wages, the less likely they are to stay and work in NY), but, perhaps due to outliers, the overall explanatory power of these models is extremely weak (R2 is less than 0.03).
 
 
 ```{r Wages Residency Status Regression, message = F, warning = F, echo = TRUE}
@@ -481,9 +481,9 @@ base_plot +
 
 ```
 
-Yet there is significant variation between regions, and SUNY's role in helping to attract, form, and redistribute human capital also varies widely across the state.  While the system has a relatively small effect on New York City, it plays a more central role in rural (Mohawk Valley, North Country) and post-industrial areas (Western and Central New York).  These regions have low median incomes and educational attainment rates relative to both the state and the country.  It also appears that these regions struggle to attract college graduates.  Without access to SUNY schools, it is likely that these areas would be even further behind.  
+Yet there is significant variation between regions, and SUNY's role in helping to attract, form, and redistribute human capital also varies widely across the state.  While the system has a relatively small effect on New York City, it plays a more central role in rural (Mohawk Valley, North Country) and post-industrial areas (Western and Central New York).  These regions have low median incomes and educational attainment rates relative to both the state and the country.  It also appears that these regions struggle to attract non-SUNY college graduates.  Without access to SUNY schools, it is likely that these areas would be even further behind.  
 
-However, because of the outsize role SUNY plays in places like Mohawk Valley and Western New York, the interface between degrees conferred and local labor markets is even more critically important.  This study takes a first step towards understanding some of the drivers behind the relationship between skills supplied and regional labor demand.  Earnings after graduation by degree type help to explain some of the mismatch.  Available programs and cohort size also matter.
+However, because of the outsize role SUNY plays in places like Mohawk Valley and Western New York, the interface between degrees conferred and local labor markets is even more critically important than in more economically.  This study takes a first step towards understanding some of the drivers behind the relationship between skills supplied and regional labor demand.  Earnings after graduation by degree type help to explain some of the mismatch.  Available programs and cohort size also matter.
 
 
 
