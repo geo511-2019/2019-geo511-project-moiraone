@@ -1,15 +1,15 @@
-﻿Level,School,Region,Regional_Wages,Program,Residents,Wages,Sample Cohort,,
+﻿Level,School,Region,Regional_Wages,Program,Residents,Wages,Sample,,
 Doctoral,Albany,Capital,"34,233",Agriculture,0,0,0,,
 Doctoral,Albany,Capital,"34,233",Art,64.2,"42,428",52,,
 Doctoral,Albany,Capital,"34,233",Technical trades,0,0,0,,
 Doctoral,Albany,Capital,"34,233",Communications and Media,0,0,0,,
 Doctoral,Albany,Capital,"34,233",Law and Public Service,0,0,0,,
 Doctoral,Albany,Capital,"34,233",Engineering,27.3,"105,584",26,,
-Doctoral,Albany,Capital,"34,233",Social Services,56.2,"70,524",211,,"34,233"
-Doctoral,Albany,Capital,"34,233",Hospitality,0,0,0,,"34,233"
-Doctoral,Albany,Capital,"34,233",Education,71.7,"64,602",594,,"34,233"
-Doctoral,Albany,Capital,"34,233",Computers and Math,56.25,"88,179",93,,"34,233"
-Doctoral,Albany,Capital,"34,233",Business and Finance,64.2,"99,818",498,,"34,233"
+Doctoral,Albany,Capital,"34,233",Social Services,56.2,"70,524",211,,
+Doctoral,Albany,Capital,"34,233",Hospitality,0,0,0,,
+Doctoral,Albany,Capital,"34,233",Education,71.7,"64,602",594,,
+Doctoral,Albany,Capital,"34,233",Computers and Math,56.25,"88,179",93,,
+Doctoral,Albany,Capital,"34,233",Business and Finance,64.2,"99,818",498,,
 Doctoral,Albany,Capital,"34,233",Health,52,"76,795",46,,
 Comprehensive,Empire State,Capital,"34,233",Agriculture,0,0,0,,
 Comprehensive,Empire State,Capital,"34,233",Art,50,"48,755",47,,
