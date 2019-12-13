@@ -512,7 +512,7 @@ ggplot(grad_retention, aes(x = Region, y = Value,
   )+
   labs(title = &quot;SUNY Alums as a Percent of Regional Workforce&quot;,
        y = &quot;Percent of Total Workforce&quot;,
-       caption = &quot;Data: Rockefeller Center&quot;)</code></pre>
+       caption = &quot;Data: Rockefeller Institute&quot;)</code></pre>
 <p><img src="index_files/figure-html/suny%20alums%20workforce-1.png" width="672" /></p>
 </div>
 <div id="v.-matching-suny-graduates-skills-to-local-labor-markets" class="section level2">
@@ -567,7 +567,7 @@ ggplot(wages, aes(x = Wages, y = Residents, col = Level))+
   theme(plot.caption = element_text(size = 7))</code></pre>
 <p><img src="index_files/figure-html/institutional%20level%20wages%20and%20retention-1.png" width="672" /></p>
 <p>From the above scatterplot, it appears as though graduates of Community, Comprehensive, and Technical schools are all more likely to remain in NY state after graduating. They also tend to make less money.</p>
-<p>Linear regressions reveal a significant and negative relationship between wages and percent of graduates who remain in New York State after graduating (the higher the grad’s wages, the less likely they are to stay and work in NY), but, perhaps due to outliers, the overall explanatory power of these models is extremely weak (R2 is less than 0.03).</p>
+<p>Linear regressions reveal a significant and negative relationship between wages and percent of graduates who remain in New York State after graduating (the higher the grad’s wages, the less likely they are to stay and work in NY), but, perhaps due to outliers, the overall explanatory power of these models is extremely weak (R2 is less than 0.03). “Wage Premiums” are the percent above the regional median wage graduates of a given school/program make.</p>
 <pre class="r"><code>programs &lt;- read_csv(&quot;schools_programs_wages_residency.csv&quot;)
 
 #filter schools that don&#39;t have programs or have fewer than 10 graduates
@@ -793,7 +793,7 @@ base_plot +
   )</code></pre>
 <p><img src="index_files/figure-html/income-1.png" width="672" /></p>
 <p>Yet there is significant variation between regions, and SUNY’s role in helping to attract, form, and redistribute human capital also varies widely across the state. While the system has a relatively small effect on New York City, it plays a more central role in rural (Mohawk Valley, North Country) and post-industrial areas (Western and Central New York). These regions have low median incomes and educational attainment rates relative to both the state and the country. It also appears that these regions struggle to attract non-SUNY college graduates. Without access to SUNY schools, it is likely that these areas would be even further behind.</p>
-<p>However, because of the outsize role SUNY plays in places like Mohawk Valley and Western New York, the interface between degrees conferred and local labor markets is even more critically important than in more economically. This study takes a first step towards understanding some of the drivers behind the relationship between skills supplied and regional labor demand. Earnings after graduation by degree type help to explain some of the mismatch. Available programs and cohort size also matter.</p>
+<p>However, because of the outsize role SUNY plays in places like Mohawk Valley and Western New York, the interface between degrees conferred and local labor markets is even more critically important than in more economically advantaged areas. This study takes a first step towards understanding some of the drivers behind the relationship between skills supplied and regional labor demand. Earnings after graduation by degree type help to explain some of the mismatch. Available programs and cohort size also matter.</p>
 </div>
 
 <!-- give the footer some space -->
